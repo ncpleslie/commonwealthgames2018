@@ -106,17 +106,24 @@ class Tournament {
   }
   
   findSport (targetName) {
-    return this.allMySports.find(aSport => aSport.name === targetName)
+    return this.allMySports.find(aSport => aSport.name == targetName)
   }
   expandSports () {
       let totalSports = this.allMySports.length
       let result = ''
       for (let i=0;i<totalSports;i++){
-        result += '<button onclick="lvl2Expand()">'+this.allMySports[i].name+'</button>'
+        var sportName = this.allMySports[i].name
+        result += '<button onclick="the2018Games.lvl2Expand()">'+sportName+'</button>'
       }
       return result
   }
   lvl2Expand () {
-
+      let sportLocation = this.findSport('Netball')
+      let sportTeamArr = sportLocation.allMyTeams
+      let result = ''
+      for (let aTeam of sportTeamArr){
+          result += '<button onclick="the2018Games.lvl3Expand()">'+'A'+'</button>'
+      }
+      return result
   }
 }
