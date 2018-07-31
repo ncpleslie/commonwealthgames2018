@@ -18,7 +18,17 @@
 </head>
           
 <body>
+  <button onclick="intialExpand()">Expand</button>
   <script>
+  function intialExpand (){
+    var the2018Games
+    the2018Games = Controller.setup()
+      let theDisplay = document.getElementById( 'divDisplay')
+      document.body.style.fontFamily = 'Courier New'
+      addPoolResults(the2018Games) // NEW LINE FOR ASSIGNMENT 2
+      addShortNames(the2018Games) // NEW LINE FOR ASSIGNMENT 2
+      theDisplay.innerHTML = the2018Games.getAll()
+      console.log( the2018Games ) 
   var the2018Games // GLOBAL FOR DEBUGGING
     var go = function () {
       the2018Games = Controller.setup()
@@ -29,7 +39,8 @@
       theDisplay.innerHTML = the2018Games.getAll()
       console.log( the2018Games ) 
     }
-    window.onload = go;
+    //window.onload = go;
+  }
   </script> 
 </body> 
  
