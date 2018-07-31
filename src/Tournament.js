@@ -108,4 +108,15 @@ class Tournament {
   findSport (targetName) {
     return this.allMySports.find(aSport => aSport.name === targetName)
   }
+  expandSports () {
+      let totalSports = this.allMySports.length
+      let result = ''
+      for (let i=0;i<totalSports;i++){
+        result += '<button onclick="lvl2Expand()">'+this.allMySports[i].name+'</button>'
+      }
+      return result
+  }
+  lvl2Expand () {
+
+  }
 }
