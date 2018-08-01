@@ -108,14 +108,18 @@ class Tournament {
   findSport (targetName) {
     return this.allMySports.find(aSport => aSport.name == targetName)
   }
+
   expandSports () {
       let totalSports = this.allMySports.length
-      let result = ''
       for (let i=0;i<totalSports;i++){
         var sportName = this.allMySports[i].name
-        result += '<button onclick="the2018Games.lvl2Expand()">'+sportName+'</button>'
+        var btn = document.createElement('button')
+        var t = document.createTextNode(sportName)
+        btn.setAttribute('id', sportName)
+        btn.setAttribute('onclick', this.lvl2Expand(sportName))
+        btn.appendChild(t)
+        document.body.appendChild()
       }
-      return result
   }
   lvl2Expand () {
       let sportLocation = this.findSport('Netball')
