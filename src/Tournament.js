@@ -111,23 +111,28 @@ class Tournament {
 
   expandSports () {
       let totalSports = this.allMySports.length
+      var dropDwn = document.createElement('select')
+      dropDwn.setAttribute('id', 'intialSports')
       for (let i=0;i<totalSports;i++){
         var sportName = this.allMySports[i].name
-        var btn = document.createElement('button')
-        var t = document.createTextNode(sportName)
-        btn.setAttribute('id', sportName)
-        btn.setAttribute('onclick', this.lvl2Expand(sportName))
-        btn.appendChild(t)
-        document.body.appendChild()
+        var elements = document.createElement('option')
+        elements.textContent = sportName
+        elements.value = sportName
+       // elements.onchange('onclick', this.lvl2Expand(sportName))
+        dropDwn.appendChild(elements)
       }
+      document.body.appendChild(dropDwn)
+      this.lvl2Expand()
   }
+
   lvl2Expand () {
-      let sportLocation = this.findSport('Netball')
-      let sportTeamArr = sportLocation.allMyTeams
-      let result = ''
-      for (let aTeam of sportTeamArr){
-          result += '<button onclick="the2018Games.lvl3Expand()">'+'A'+'</button>'
+      var sportLocation
+      var infoDisp = document.getElementById('title')
+      document.getElementById('intialSports').onchange = function () {
+        sportLocation = the2018Games.findSport(this.value)
+        console.log(sportLocation)
+        infoDisp.innerHTML = sportLocation
+        sportLocation.displayMatches()
       }
-      return result
   }
 }

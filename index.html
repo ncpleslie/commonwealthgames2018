@@ -17,23 +17,22 @@
 </head>
           
 <body>
-    <main>
-        <div id="expand"></div>
-        <button onclick="intialExpand()">Expand</button>
-    </main>
+
 
     <script>
-        function intialExpand() {
-            the2018Games.expandSports()
-        }
+
         var the2018Games // GLOBAL FOR DEBUGGING
         var go = function() {
             the2018Games = Controller.setup()
             addPoolResults(the2018Games) // NEW LINE FOR ASSIGNMENT 2
             addShortNames(the2018Games) // NEW LINE FOR ASSIGNMENT 2
             console.log(the2018Games)
+            the2018Games.expandSports()
         }
         window.onload = go
     </script> 
+        <main>
+            <p id = 'title'></p>
+        </main>
 </body> 
 </html>

@@ -179,8 +179,7 @@ class Sport {
       return 0
     })
   } 
-  
-  
+
     getTeamResults() {
     this.sortTeams()
     let result = '*' + this.name + View.NEWLINE()
@@ -189,5 +188,9 @@ class Sport {
     }
     result += View.NEWLINE()
     return result
+  }
+
+  displayMatches() {
+    alert('worked')
   }
 }
