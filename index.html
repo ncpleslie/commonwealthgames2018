@@ -14,13 +14,23 @@
     <script src="src/Controller.js"></script>
     <script src="src/addPoolResults.js"></script>
     <script src="src/shortNames.js"></script>
+
+    <style>
+        body {background-color: powderblue;}
+        h1   {color: black;}
+        p    {color: black;}
+        #match {white-space: pre;}
+        header {padding:60px 0 80px 0;
+                background: url(https://gc2018.thecgf.com/themes/custom/commongame/logo.svg) no-repeat top left;}
+    </style>
 </head>
           
 <body>
+    <header>
 
+    </header>
 
     <script>
-
         var the2018Games // GLOBAL FOR DEBUGGING
         var go = function() {
             the2018Games = Controller.setup()
@@ -31,8 +41,9 @@
         }
         window.onload = go
     </script> 
-        <main>
-            <p id = 'title'></p>
-        </main>
+
+    <main>
+        <h1 id='title'></h1>
+    </main>
 </body> 
 </html>

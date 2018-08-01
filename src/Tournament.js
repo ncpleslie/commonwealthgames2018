@@ -113,6 +113,10 @@ class Tournament {
       let totalSports = this.allMySports.length
       var dropDwn = document.createElement('select')
       dropDwn.setAttribute('id', 'intialSports')
+      var firstEl = document.createElement('option')
+      firstEl.textContent = "Select a sport"
+      firstEl.value = "default"
+      dropDwn.appendChild(firstEl)
       for (let i=0;i<totalSports;i++){
         var sportName = this.allMySports[i].name
         var elements = document.createElement('option')

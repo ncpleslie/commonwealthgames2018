@@ -167,8 +167,8 @@ class Sport {
     }
     return result
   }
-  
-    sortTeams () {
+
+sortTeams () {
     this.allMyTeams.sort((a, b) => {
       if (a.name < b.name) {
         return -1
@@ -180,7 +180,7 @@ class Sport {
     })
   } 
 
-    getTeamResults() {
+getTeamResults() {
     this.sortTeams()
     let result = '*' + this.name + View.NEWLINE()
     for (let aTeam of this.allMyTeams) {
@@ -190,7 +190,14 @@ class Sport {
     return result
   }
 
-  displayMatches() {
-    alert('worked')
+displayMatches() {
+    var matchEl = document.createElement('match')
+    document.body.appendChild(matchEl)
+    matchEl.setAttribute('id', 'match')
+    var result = ''
+    for (let aMatch of this.allMyMatches) {
+        result += '\r\n'+aMatch
+    }
+    document.getElementById('match').innerHTML = result
   }
 }
