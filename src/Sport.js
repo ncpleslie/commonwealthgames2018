@@ -191,7 +191,7 @@ getTeamResults() {
   }
 
 displayMatches() {
-    var matchEl = document.createElement('match')
+    var matchEl = document.createElement('p')
     document.body.appendChild(matchEl)
     matchEl.setAttribute('id', 'match')
     var result = ''
