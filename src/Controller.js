@@ -3,7 +3,9 @@ class Controller {
     const APRIL = 3 // JAN = 0!  
     let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
     let aSport = the2018Games.addSport('Netball', 'Gold Coast Convention and Exhibition Centre')
-    
+
+
+    console.log(womensRugby)
     // -----------------------------------------------------------------------------
     aSport.addMatch(2018, APRIL,  5, 13,  0, 'A', 'Jamaica', 'Fiji')
     aSport.addMatch(2018, APRIL,  5, 15,  0, 'B', 'England', 'Scotland')

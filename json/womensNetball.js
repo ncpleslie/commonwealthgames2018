@@ -1,4 +1,4 @@
-[
+var womensNetball = [
   {
     "Year": 2018,
     "Month": 3,

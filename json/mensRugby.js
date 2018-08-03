@@ -1,4 +1,4 @@
-[
+var mensRugby = [
     {
       "Year": 2018,
       "Month": 3,
