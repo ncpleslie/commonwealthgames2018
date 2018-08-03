@@ -1,12 +1,26 @@
 class Controller {
-  static setup () {
-    const APRIL = 3 // JAN = 0!  
+  static setup () {  
     let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
     let aSport = the2018Games.addSport('Netball', 'Gold Coast Convention and Exhibition Centre')
 
+    //Iterate through each object to add data
+    //Netball
+    for (let aMatch of womensNetball){
+      aSport.addMatch(aMatch.Year, aMatch.Month, aMatch.Day, aMatch.Hour, aMatch.Minute, aMatch.Pool, aMatch.TeamA, aMatch.TeamB)
+    }
+    //Men's Rugby
+    aSport = the2018Games.addSport('Men\'s Rugby Sevens', 'Robina Stadium')
+    for (let aMatch of mensRugby){
+      aSport.addMatch(aMatch.Year, aMatch.Month, aMatch.Day, aMatch.Hour, aMatch.Minute, aMatch.Pool, aMatch.TeamA, aMatch.TeamB)
+    }
+    //Women's Rugby
+    aSport = the2018Games.addSport('Women\'s Rugby Sevens', 'Robina Stadium')
+    for (let aMatch of womensRugby){
+      aSport.addMatch(aMatch.Year, aMatch.Month, aMatch.Day, aMatch.Hour, aMatch.Minute, aMatch.Pool, aMatch.TeamA, aMatch.TeamB)
+    }
 
-    console.log(womensRugby)
     // -----------------------------------------------------------------------------
+    /*
     aSport.addMatch(2018, APRIL,  5, 13,  0, 'A', 'Jamaica', 'Fiji')
     aSport.addMatch(2018, APRIL,  5, 15,  0, 'B', 'England', 'Scotland')
     aSport.addMatch(2018, APRIL,  5, 18, 30, 'B', 'New Zealand', 'Uganda') 
@@ -92,7 +106,7 @@ class Controller {
     aSport.addMatch(2018, APRIL, 14, 13, 30, 'A', 'New Zealand', 'Canada')
     aSport.addMatch(2018, APRIL, 14, 18, 30, 'B', 'England', 'Wales')
     aSport.addMatch(2018, APRIL, 14, 18, 30, 'B', 'Australia', 'Fiji')
-
+    */
     return the2018Games
   }
 }
