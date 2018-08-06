@@ -110,6 +110,7 @@ class Tournament {
   }
 
   expandSports () {
+
       let totalSports = this.allMySports.length
       var dropDwn = document.createElement('select')
       dropDwn.setAttribute('id', 'intialSports')
@@ -126,6 +127,7 @@ class Tournament {
       }
       document.body.appendChild(dropDwn)
       this.lvl2Expand()
+
   }
 
   lvl2Expand () {

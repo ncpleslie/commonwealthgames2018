@@ -149,8 +149,10 @@ class Sport {
   }
 
   addShortName (fullTeamName, shortTeamName){
+
     let theTeam = this.findTeam(fullTeamName)
     theTeam.shortName = shortTeamName
+
   }
   
   getResults () {

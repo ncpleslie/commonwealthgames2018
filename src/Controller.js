@@ -1,7 +1,8 @@
 class Controller {
   static setup () {  
-    let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
-    let aSport = the2018Games.addSport('Netball', 'Gold Coast Convention and Exhibition Centre')
+    
+  /*  let aSport = the2018Games.addSport('Netball', 'Gold Coast Convention and Exhibition Centre')
+
 
     //Iterate through each object to add data
     //Netball
@@ -17,7 +18,7 @@ class Controller {
     aSport = the2018Games.addSport('Women\'s Rugby Sevens', 'Robina Stadium')
     for (let aMatch of womensRugby){
       aSport.addMatch(aMatch.Year, aMatch.Month, aMatch.Day, aMatch.Hour, aMatch.Minute, aMatch.Pool, aMatch.TeamA, aMatch.TeamB)
-    }
+    } */
 
     // -----------------------------------------------------------------------------
     /*

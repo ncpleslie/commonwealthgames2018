@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>BCSE101 18S1 Programming Assignment 1</title>
     <!-- include source files here... -->
+    <script src="json/webscraper.js"></script>
+    <script src="resources/variables.js"></script>
     <script src="src/SetExtensions.js"></script>
     <script src="src/View.js"></script>
     <script src="src/Team.js"></script>
@@ -17,7 +19,7 @@
     <script src="json/womensNetball.js"></script>
     <script src="json/mensRugby.js"></script>
     <script src="json/womensRugby.js"></script>
-
+   
     <style>
         body {background-color: powderblue;}
         h1   {color: white;}
@@ -35,16 +37,15 @@
     </header>
 
     <script>
-        var the2018Games // GLOBAL FOR DEBUGGING
-        var go = function() {
-            the2018Games = Controller.setup()
-            addPoolResults(the2018Games) // NEW LINE FOR ASSIGNMENT 2
-            addShortNames(the2018Games) // NEW LINE FOR ASSIGNMENT 2
-            console.log(the2018Games)
-            the2018Games.expandSports()
-        }
+      // var the2018Games // GLOBAL FOR DEBUGGING
+      let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
+          var go = 
+          fetchPages(urlObj[2], urlObj[0], urlObj[1])
+          fetchPages(urlObj[5], urlObj[3], urlObj[4])
+          fetchPages(urlObj[8], urlObj[6], urlObj[7])
+
         window.onload = go
-    </script> 
+            </script> 
 
     <main>
         <h1 id='title'></h1>
