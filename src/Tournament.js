@@ -127,16 +127,16 @@ class Tournament {
       }
       document.body.appendChild(dropDwn)
       this.lvl2Expand()
-
   }
 
   lvl2Expand () {
-      var sportLocation
-      var infoDisp = document.getElementById('title')
+      var sportLocation = "Commonwealth Games 2018"
+      var infoDisp = document.createElement('title')
+      document.getElementById('title').innerHTML = sportLocation
       document.getElementById('intialSports').onchange = function () {
         sportLocation = the2018Games.findSport(this.value)
         console.log(sportLocation)
-        infoDisp.innerHTML = sportLocation
+        document.getElementById('title').innerHTML = sportLocation
         sportLocation.displayMatches()
       }
   }

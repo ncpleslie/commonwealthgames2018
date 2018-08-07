@@ -193,13 +193,22 @@ getTeamResults() {
   }
 
 displayMatches() {
-    var matchEl = document.createElement('p')
-    document.body.appendChild(matchEl)
+  
+  if (document.getElementById("overflowDiv")){
+    document.getElementById("overflowDiv").remove()
+  }
+    var wrapperEl = document.createElement('div')
+    wrapperEl.setAttribute('style', "overflow-x:auto;")
+    wrapperEl.setAttribute('id', "overflowDiv")
+    var matchEl = document.createElement('table')
+    wrapperEl.appendChild(matchEl)
+    document.body.appendChild(wrapperEl)
     matchEl.setAttribute('id', 'match')
-    var result = ''
+    var result = '<th>Time</th><th>Pool</th><th>Event</th><th>Results</th>'
     for (let aMatch of this.allMyMatches) {
-        result += '\r\n'+aMatch
+        result += '<tr>' + '\r\n'+aMatch + '</tr>'
     }
+    result += "</tr>"
     document.getElementById('match').innerHTML = result
   }
 }

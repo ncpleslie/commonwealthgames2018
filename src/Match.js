@@ -12,7 +12,7 @@ class Match {
   }
   toString() {
     //return `${this.when.toDateString()} ${this.when.toLocaleTimeString()} ${this.myPool} ${this.myTeamA} vs ${this.myTeamB} `
-    return `${this.myPool} ${this.myTeamA} vs ${this.myTeamB} ${this.scoreA} - ${this.scoreB}`
+  return `<td>${this.when.toLocaleDateString()}\n${this.when.toLocaleTimeString()}</td><td>${this.myPool}</td> <td>${this.myTeamA}\n${this.myTeamB}</td> <td>${this.scoreA}\n${this.scoreB}</td>`
     
   }
   

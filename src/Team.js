@@ -38,4 +38,7 @@ class Team {
     result += View.padRight(this.scoreAgainst)
     return result
   }
+  shortNameString() {
+    return this.shortName
+  }
 }
