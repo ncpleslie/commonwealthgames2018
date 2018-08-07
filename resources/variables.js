@@ -9,3 +9,7 @@ var urlObj = [
     'Robina Stadium',
     "https://cryptic-headland-94862.herokuapp.com/results.gc2018.com/en/rugby-sevens/event-schedule-women.htm"
 ]
+// Alternative cos-proxys
+//https://cors-anywhere.herokuapp.com/
+//https://cryptic-headland-94862.herokuapp.com/
+//https://stackoverflow.com/questions/47076743/cors-anywhere-herokuapp-com-not-working
