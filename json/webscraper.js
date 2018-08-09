@@ -12,7 +12,7 @@ function fetchPages (url, sport, location) {
   var doc
   var wholeTable = []
 
-  return fetch(url) // html as text
+  return fetch("https://immense-citadel-58241.herokuapp.com/"+url) // html as text
         .then((resp) => resp.text())
         .then(function (html) {
             // Initialize the DOM parser
