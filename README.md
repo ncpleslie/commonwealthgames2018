@@ -34,3 +34,12 @@ Webscraper.js now pushes data to the system
 Improved CSS
 
 Placed match data into a table
+
+
+**Iteration v0.4**
+
+
+Added Loading icon and error info if fails to grab data from commonwealth website
+
+Improved css (For loading icon)
+Add .catch for .fetch()
