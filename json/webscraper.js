@@ -12,7 +12,6 @@ function fetchPages(url, sport, location) {
   var doc
   var wholeTable = []
 
-<<<<<<< HEAD
   return fetch("https://immense-citadel-58241.herokuapp.com/" + url) // html as text
 
       .then((resp) => resp.text())
@@ -26,12 +25,6 @@ function fetchPages(url, sport, location) {
       )
       .then(function(html) {
           // Initialize the DOM parser
-=======
-  return fetch("https://immense-citadel-58241.herokuapp.com/"+url) // html as text
-        .then((resp) => resp.text())
-        .then(function (html) {
-            // Initialize the DOM parser
->>>>>>> a9a405ca616ada66a07ef78206af3b0625dc5702
           var parser = new DOMParser()
           // Parse the text
           doc = parser.parseFromString(html, 'text/html')
