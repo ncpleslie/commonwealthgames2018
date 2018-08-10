@@ -5,6 +5,8 @@ body {
     font-size: 1rem;
     color: #FFFFFF;
     font-family: "Arial";
+    margin-left:auto;
+    margin-right:auto;
 }
 h1 {
     margin: 0;
@@ -80,3 +82,30 @@ th {
     color: white;
     text-align: center;
 }
+
+/* Loading Icon */
+#loadingIcon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#loadingIcon:after {
+    content: " ";
+    display: block;
+    width: 146px;
+    height: 146px;
+    border-radius: 50%;
+    border: 5px solid rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0) transparent #fff transparent;
+    animation: loadingIcon 1.2s linear infinite;
+  }
+  @keyframes loadingIcon {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

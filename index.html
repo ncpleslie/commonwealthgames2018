@@ -36,12 +36,18 @@
     <script>
       // var the2018Games // GLOBAL FOR DEBUGGING
       let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
-          var go = 
+      // Loading Icon
+      var loadingIcon = document.createElement("div")
+            loadingIcon.setAttribute("id", "loadingIcon")
+            document.body.appendChild(loadingIcon)
+      // Initialize Program by fetching data
+      var go = 
           fetchPages(urlObj[2], urlObj[0], urlObj[1])
           fetchPages(urlObj[5], urlObj[3], urlObj[4])
           fetchPages(urlObj[8], urlObj[6], urlObj[7])
 
-        window.onload = go
+
+        window.onload = go, loadingIcon
             </script> 
 
     <main>
