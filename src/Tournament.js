@@ -3,30 +3,30 @@ class Tournament {
     this.name = newName
     this.allMySports = []
   }
-  toString() {
+  toString () {
     return this.name
   }
-  addSport(newName, newVenue) {
+  addSport (newName, newVenue) {
     let newSport = new Sport(newName, newVenue)
     this.allMySports.push(newSport)
     return newSport
   }
-  
-  getSports() {
+
+  getSports () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport + View.NEWLINE()
     }
     return result
   }
-  getTeams() {
+  getTeams () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport.getTeams() + View.NEWLINE()
     }
     return result
   }
-  getPools() {
+  getPools () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport.getPools() + View.NEWLINE()
@@ -34,14 +34,14 @@ class Tournament {
     return result
   }
 
-  getMatches() {
+  getMatches () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport.getMatches() + View.NEWLINE()
     }
     return result
   }
-  getNZMatches() {
+  getNZMatches () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport.getNZMatches() + View.NEWLINE()
@@ -50,23 +50,23 @@ class Tournament {
   }
   getParticipation () {
     let result = ''
-    
-    let netballSet = new  Set()
+
+    let netballSet = new Set()
     for (let aTeam of this.allMySports[0].allMyTeams) {
       netballSet.add(aTeam.name)
     }
-    let mens7sSet = new  Set()
+    let mens7sSet = new Set()
     for (let aTeam of this.allMySports[1].allMyTeams) {
       mens7sSet.add(aTeam.name)
     }
-    let womens7sSet = new  Set()
+    let womens7sSet = new Set()
     for (let aTeam of this.allMySports[2].allMyTeams) {
       womens7sSet.add(aTeam.name)
     }
     let all3Set = netballSet.intersection(mens7sSet)
     all3Set = all3Set.intersection(womens7sSet)
   }
-  
+
   getResults () {
     let result = ''
     for (let aSport of this.allMySports) {
@@ -74,50 +74,48 @@ class Tournament {
     }
     return result
   }
-  
-    getMatchResults() {
+
+  getMatchResults () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport.getMatchResults() + View.NEWLINE()
     }
     return result
   }
-  
-    getTeamResults() {
+
+  getTeamResults () {
     let result = ''
     for (let aSport of this.allMySports) {
       result += aSport.getTeamResults() + View.NEWLINE()
     }
     return result
   }
-  
-  getAll() {
+
+  getAll () {
     let result = 'Programming Assignment 2' + View.NEWLINE()
     result += this + View.NEWLINE()
-    //result += 'TEAMS' + View.NEWLINE() +  View.NEWLINE() + this.getSports() + View.NEWLINE()
-    //result += 'TEAMS' + View.NEWLINE() +  View.NEWLINE() + this.getTeams() + View.NEWLINE()
-    //result += 'POOLS' + View.NEWLINE() +  View.NEWLINE() + this.getPools() + View.NEWLINE()
-    result += 'MATCH RESULTS' + View.NEWLINE() +  View.NEWLINE() + this.getMatchResults() + View.NEWLINE()
-    result += 'TEAM RESULTS' + View.NEWLINE() +  View.NEWLINE() + this.getTeamResults() + View.NEWLINE()
-    //result += 'NZ MATCHES' + View.NEWLINE() +  View.NEWLINE() + this.getNZMatches() + View.NEWLINE()
-    //result += 'PARTICIPATION ANALYSIS' + View.NEWLINE() +  View.NEWLINE() + this.getParticipation() + View.NEWLINE()
-    result += 'MATCHES RESULTS' + View.NEWLINE() +  View.NEWLINE() + this.getResults() + View.NEWLINE()
+    // result += 'TEAMS' + View.NEWLINE() +  View.NEWLINE() + this.getSports() + View.NEWLINE()
+    // result += 'TEAMS' + View.NEWLINE() +  View.NEWLINE() + this.getTeams() + View.NEWLINE()
+    // result += 'POOLS' + View.NEWLINE() +  View.NEWLINE() + this.getPools() + View.NEWLINE()
+    result += 'MATCH RESULTS' + View.NEWLINE() + View.NEWLINE() + this.getMatchResults() + View.NEWLINE()
+    result += 'TEAM RESULTS' + View.NEWLINE() + View.NEWLINE() + this.getTeamResults() + View.NEWLINE()
+    // result += 'NZ MATCHES' + View.NEWLINE() +  View.NEWLINE() + this.getNZMatches() + View.NEWLINE()
+    // result += 'PARTICIPATION ANALYSIS' + View.NEWLINE() +  View.NEWLINE() + this.getParticipation() + View.NEWLINE()
+    result += 'MATCHES RESULTS' + View.NEWLINE() + View.NEWLINE() + this.getResults() + View.NEWLINE()
     return result
   }
-  
+
   findSport (targetName) {
     return this.allMySports.find(aSport => aSport.name == targetName)
   }
-  expandSports() {
-    console.log(this.allMySports)
-
+  expandSports () {
     // Make dropdown menu
     var dropDown = display.intializeDropDown()
 
     // Add options to the dropdown menu
     let totalSports = this.allMySports.length
     for (let i = 0; i < totalSports; i++) {
-        dropDown.appendChild(display.addToDropDownMenu(this.allMySports, i))
+      dropDown.appendChild(display.addToDropDownMenu(this.allMySports, i))
     }
 
     // Add the dropdown menu to the page
@@ -125,7 +123,5 @@ class Tournament {
 
     // Load the next step
     display.displayTable()
-}
-
-
+  }
 }
