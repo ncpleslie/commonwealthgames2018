@@ -36,10 +36,22 @@ Improved CSS
 Placed match data into a table
 
 
-**Iteration v0.4**
+**Iteration v0.5**
 
 
 Added Loading icon and error info if fails to grab data from commonwealth website
 
 Improved css (For loading icon)
 Add .catch for .fetch()
+Code refactoring and decomposition (Moved code to new classes)
+Made code easier to read and more modular
+
+
+
+
+**Alternative CORS**
+// Alternative cos-proxys
+// https://immense-citadel-58241.herokuapp.com/  --This is my own
+// https://cors-anywhere.herokuapp.com/
+// https://cryptic-headland-94862.herokuapp.com/
+// https://stackoverflow.com/questions/47076743/cors-anywhere-herokuapp-com-not-working

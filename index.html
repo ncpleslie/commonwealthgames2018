@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>BCSE101 18S1 Programming Assignment 1</title>
     <!-- include source files here... -->
-    <script src="json/webscraper.js"></script>
-    <script src="resources/variables.js"></script>
+    <script src="src/Controller.js"></script>
+    <script src="newsrc/PreController.js"></script>
+    <script src="newsrc/Webscraper.js"></script>
     <script src="src/SetExtensions.js"></script>
     <script src="src/View.js"></script>
     <script src="src/Team.js"></script>
@@ -13,42 +14,27 @@
     <script src="src/Pool.js"></script>
     <script src="src/Sport.js"></script>
     <script src="src/Tournament.js"></script>
-    <script src="src/Controller.js"></script>
+    <script src="newsrc/Display.js"></script>
     <script src="src/addPoolResults.js"></script>
     <script src="src/shortNames.js"></script>
-    <script src="json/womensNetball.js"></script>
-    <script src="json/mensRugby.js"></script>
-    <script src="json/womensRugby.js"></script>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="stylesheet.css">
-   
-    <style>
-
-    </style>
 </head>
           
 <body>
     <header>
-
     </header>
 
     <script>
       // var the2018Games // GLOBAL FOR DEBUGGING
-      let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
+    let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
+    let webscraper = new Webscraper() 
+    let display = new Display()
+
       // Loading Icon
-      var loadingIcon = document.createElement("div")
-            loadingIcon.setAttribute("id", "loadingIcon")
-            document.body.appendChild(loadingIcon)
       // Initialize Program by fetching data
-      var go = 
-          fetchPages(urlObj[2], urlObj[0], urlObj[1])
-          fetchPages(urlObj[5], urlObj[3], urlObj[4])
-          fetchPages(urlObj[8], urlObj[6], urlObj[7])
-
-
-        window.onload = go, loadingIcon
-            </script> 
+    window.onload = webscraper.addDataFromWebPages(), display.addLoadingIcon()
+    </script> 
 
     <main>
         <h1 id='title'></h1>

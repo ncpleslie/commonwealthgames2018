@@ -108,36 +108,24 @@ class Tournament {
   findSport (targetName) {
     return this.allMySports.find(aSport => aSport.name == targetName)
   }
+  expandSports() {
+    console.log(this.allMySports)
 
-  expandSports () {
+    // Make dropdown menu
+    var dropDown = display.intializeDropDown()
 
-      let totalSports = this.allMySports.length
-      var dropDwn = document.createElement('select')
-      dropDwn.setAttribute('id', 'intialSports')
-      var firstEl = document.createElement('option')
-      firstEl.textContent = "SELECT A SPORT"
-      firstEl.value = "default"
-      dropDwn.appendChild(firstEl)
-      for (let i=0;i<totalSports;i++){
-        var sportName = this.allMySports[i].name
-        var elements = document.createElement('option')
-        elements.textContent = sportName
-        elements.value = sportName
-        dropDwn.appendChild(elements)
-      }
-      document.body.appendChild(dropDwn)
-      this.lvl2Expand()
-  }
+    // Add options to the dropdown menu
+    let totalSports = this.allMySports.length
+    for (let i = 0; i < totalSports; i++) {
+        dropDown.appendChild(display.addToDropDownMenu(this.allMySports, i))
+    }
 
-  lvl2Expand () {
-      var sportLocation = "Commonwealth Games 2018"
-      var infoDisp = document.createElement('title')
-      document.getElementById('title').innerHTML = sportLocation
-      document.getElementById('intialSports').onchange = function () {
-        sportLocation = the2018Games.findSport(this.value)
-        console.log(sportLocation)
-        document.getElementById('title').innerHTML = sportLocation
-        sportLocation.displayMatches()
-      }
-  }
+    // Add the dropdown menu to the page
+    document.body.appendChild(dropDown)
+
+    // Load the next step
+    display.displayTable()
+}
+
+
 }
