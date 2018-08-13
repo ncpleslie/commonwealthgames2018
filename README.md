@@ -43,8 +43,11 @@ Added Loading icon and error info if fails to grab data from commonwealth websit
 
 Improved css (For loading icon)
 Add .catch for .fetch()
+
 Code refactoring and decomposition (Moved code to new classes)
 Made code easier to read and more modular
+
+Automated addPoolResults and addShortName. No longer hardcoded
 
 
 
