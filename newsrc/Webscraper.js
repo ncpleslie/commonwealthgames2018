@@ -3,7 +3,7 @@ This function needs internet access
 This heads to the urls for each sport (See URLs below)
 Grabs the relevant data and feeds it into the system. Errors will be shown in console. This is normal and an issue with javascripts async nature
 */
-class Webscraper {
+class Webscraper { // eslint-disable-line no-unused-vars
     constructor () {
       this.urlObj = [
         'Netball',

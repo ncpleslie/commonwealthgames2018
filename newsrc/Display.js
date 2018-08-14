@@ -1,7 +1,7 @@
 /*
 This class is responsible for elements that are displayed on the screen
 */
-class Display {
+class Display { // eslint-disable-line no-unused-vars
   // --------------------------------------------Used in Fetching-----------------------
   // Creates loading icon
   addLoadingIcon () {
@@ -11,10 +11,9 @@ class Display {
   }
   // Destroys loading icon
   removeLoadingIcon () {
-    if (document.getElementById('loadingIcon')){
-    document.getElementById('loadingIcon').remove()
+    if (document.getElementById('loadingIcon')) {
+      document.getElementById('loadingIcon').remove()
     }
-<<<<<<< HEAD
   }
   // Displays Error
   requestError () {
@@ -58,7 +57,7 @@ class Display {
     document.createElement('title')
     document.getElementById('title').innerHTML = sportLocation
     document.getElementById('intialSports').onchange = function () {
-      sportLocation = the2018Games.findSport(this.value)
+      sportLocation = the2018Games.findSport(this.value) // eslint-disable-line no-undef
 
       document.getElementById('title').innerHTML = sportLocation
 
@@ -110,6 +109,3 @@ class Display {
     }
   }
 }
-=======
-    
->>>>>>> 7b9131f0d1b38f61baeb01e322e08f8d139acb17
