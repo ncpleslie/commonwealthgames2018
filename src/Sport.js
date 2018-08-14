@@ -6,15 +6,15 @@ class Sport {
     this.allMyTeams = []
     this.allMyMatches = []
   }
-  toString() {
-      return `${this.name} at ${this.venue}`
+  toString () {
+    return `${this.name} at ${this.venue}`
   }
   findTeam (targetName) {
     return this.allMyTeams.find(aTeam => aTeam.name === targetName)
   }
-  addTeam(newName){
-    let aTeam = this.findTeam(newName) 
-    if (! aTeam) {
+  addTeam (newName) {
+    let aTeam = this.findTeam(newName)
+    if (!aTeam) {
       aTeam = new Team(newName)
       this.allMyTeams.push(aTeam)
     }
@@ -30,10 +30,10 @@ class Sport {
       } // a must be equal to b
       return 0
     })
-  } 
+  }
 
   findPool (targetName) {
-     return this.allMyPools.find(aPool => aPool.name === targetName)
+    return this.allMyPools.find(aPool => aPool.name === targetName)
   }
   sortPools () {
     this.allMyPools.sort((a, b) => {
@@ -48,14 +48,14 @@ class Sport {
   }
   addPool (newName) {
     let name = newName.trim()
-    let aPool = this.findPool(name) 
-    if (! aPool) {
+    let aPool = this.findPool(name)
+    if (!aPool) {
       aPool = new Pool(name)
       this.allMyPools.push(aPool)
     }
     return aPool
   }
-  addMatch(newYear, newMonth, newDay, newHour, newMinute, newPoolName, newTeamNameA, newTeamNameB){
+  addMatch (newYear, newMonth, newDay, newHour, newMinute, newPoolName, newTeamNameA, newTeamNameB) {
     let when = new Date(newYear, newMonth, newDay, newHour, newMinute)
     let thePool = this.addPool(newPoolName)
     let teamA = this.addTeam(newTeamNameA)
@@ -64,8 +64,8 @@ class Sport {
     thePool.addTeam(teamB)
     let newMatch = new Match(when, thePool, teamA, teamB)
     this.allMyMatches.push(newMatch)
-    }
-  sortMatches() {
+  }
+  sortMatches () {
     this.allMyMatches.sort((a, b) => {
       if (a.when < b.when) {
         return -1
@@ -76,7 +76,7 @@ class Sport {
       return 0
     })
   }
-  getTeams() {
+  getTeams () {
     this.sortTeams()
     let result = '*' + this.name + View.NEWLINE()
     for (let aTeam of this.allMyTeams) {
@@ -93,23 +93,20 @@ class Sport {
     }
     return result
   }
-  
-  
-    sortMatchesByPool ()  {
-    this.allMyMatches.sort((a,b) => {
+
+  sortMatchesByPool () {
+    this.allMyMatches.sort((a, b) => {
       if (a.myPool.name < b.myPool.name) {
         return -1
       }
       if (a.myPool.name > b.myPool.name) {
         return 1
+      } else {
+        return 0
       }
-       else{
-         return 0
-       }
-  })
-    
+    })
   }
-  
+
   getMatchResults () {
     this.sortMatchesByPool()
     let result = '*' + this.name + View.NEWLINE()
@@ -118,8 +115,7 @@ class Sport {
     }
     return result
   }
-  
-  
+
   getNZMatches () {
     this.sortMatchesByPool()
     let result = '*' + this.name + View.NEWLINE()
@@ -130,31 +126,29 @@ class Sport {
     }
     return result
   }
-  //--------------------------------------------------------------------------
-  findMatch(winner, looser) {
-   return this.allMyMatches.find(aMatch => ((aMatch.myTeamA === winner && aMatch.myTeamB === looser) || (aMatch.myTeamB === winner && aMatch.myTeamA === looser)))
+  // --------------------------------------------------------------------------
+  findMatch (winner, looser) {
+    return this.allMyMatches.find(aMatch => ((aMatch.myTeamA === winner && aMatch.myTeamB === looser) || (aMatch.myTeamB === winner && aMatch.myTeamA === looser)))
   }
-  
+
   addPoolResult (winnerName, looserName, newWinnwerScore, newLooserScore) {
     let winner = this.findTeam(winnerName)
     let looser = this.findTeam(looserName)
     let theMatch = this.findMatch(winner, looser)
     let scoreA = newWinnwerScore
     let scoreB = newLooserScore
-    if (theMatch.myTeamA.name !== winner.name){
+    if (theMatch.myTeamA.name !== winner.name) {
       scoreA = newLooserScore
       scoreB = newWinnwerScore
     }
     theMatch.addResult(scoreA, scoreB)
   }
 
-  addShortName (fullTeamName, shortTeamName){
-
+  addShortName (fullTeamName, shortTeamName) {
     let theTeam = this.findTeam(fullTeamName)
     theTeam.shortName = shortTeamName
-
   }
-  
+
   getResults () {
     let result = `Results for ${this.name}` + View.NEWLINE()
     this.sortPools()
@@ -162,7 +156,7 @@ class Sport {
       let thePool = aMatch.myPool
       thePool.addMatch(aMatch)
     }
-    
+
     for (let aPool of this.allMyPools) {
       result += aPool + View.NEWLINE()
       result += aPool.getResults()
@@ -170,7 +164,7 @@ class Sport {
     return result
   }
 
-sortTeams () {
+  sortTeams () {
     this.allMyTeams.sort((a, b) => {
       if (a.name < b.name) {
         return -1
@@ -180,9 +174,9 @@ sortTeams () {
       } // a must be equal to b
       return 0
     })
-  } 
+  }
 
-getTeamResults() {
+  getTeamResults () {
     this.sortTeams()
     let result = '*' + this.name + View.NEWLINE()
     for (let aTeam of this.allMyTeams) {
@@ -191,24 +185,14 @@ getTeamResults() {
     result += View.NEWLINE()
     return result
   }
-
-displayMatches() {
-  
-  if (document.getElementById("overflowDiv")){
-    document.getElementById("overflowDiv").remove()
-  }
-    var wrapperEl = document.createElement('div')
-    wrapperEl.setAttribute('style', "overflow-x:auto;")
-    wrapperEl.setAttribute('id', "overflowDiv")
-    var matchEl = document.createElement('table')
-    wrapperEl.appendChild(matchEl)
-    document.body.appendChild(wrapperEl)
-    matchEl.setAttribute('id', 'match')
-    var result = '<th>Time</th><th>Pool</th><th>Event</th><th>Results</th>'
+  // Displays match data as a table
+  displayMatches () {
+    display.removePreviousTable('overflowDiv')
+    var matchTable = display.makeTable(document.body, 'match')
+    display.createWrapper(matchTable)
+    display.addTableHeaders(matchTable, 'Time', 'Pool', 'Event', 'Results')
     for (let aMatch of this.allMyMatches) {
-        result += '<tr>' + '\r\n'+aMatch + '</tr>'
+      display.addTableData(matchTable, aMatch.when, aMatch.myPool, aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
     }
-    result += "</tr>"
-    document.getElementById('match').innerHTML = result
   }
 }
