@@ -30,8 +30,6 @@ class Display {
         }
         var dropDown = document.createElement('select')
         dropDown.setAttribute('id', 'intialSports')
-        dropDown.setAttribute('selected')
-        dropDown.setAttribute('disabled')
         var firstElement = document.createElement('option')
         firstElement.textContent = 'SELECT A SPORT'
         firstElement.value = 'default'
