@@ -14,6 +14,7 @@ class Display {
     if (document.getElementById('loadingIcon')){
     document.getElementById('loadingIcon').remove()
     }
+<<<<<<< HEAD
   }
   // Displays Error
   requestError () {
@@ -109,3 +110,6 @@ class Display {
     }
   }
 }
+=======
+    
+>>>>>>> 7b9131f0d1b38f61baeb01e322e08f8d139acb17
