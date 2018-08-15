@@ -51,18 +51,19 @@ class Display { // eslint-disable-line no-unused-vars
     return elements
   }
   // Display Match Data
-  displayTable () {
+  displayTable (i) {
     var sportLocation = 'Commonwealth Games 2018'
-
     document.createElement('title')
     document.getElementById('title').innerHTML = sportLocation
-    document.getElementById('intialSports').onchange = function () {
-      sportLocation = the2018Games.findSport(this.value) // eslint-disable-line no-undef
+    document.getElementById('navBarSport'+i).onmouseover = function () {
+  
+      sportLocation = the2018Games.findSport(this.textContent) // eslint-disable-line no-undef
 
       document.getElementById('title').innerHTML = sportLocation
 
       sportLocation.displayMatches()
     }
+    
   }
   // --------------------------------------------Used to make a table----------------------------
   makeTable (appendTo, idName) {
@@ -103,9 +104,51 @@ class Display { // eslint-disable-line no-unused-vars
     document.body.appendChild(wrapperElement)
   }
 
-  removePreviousTable (tableId) {
-    if (document.getElementById(tableId)) {
-      document.getElementById(tableId).remove()
+  removePreviousElement (ElementId) {
+    if (document.getElementById(ElementId)) {
+      document.getElementById(ElementId).remove()
     }
+  }
+  // --------------------------------------------Used to make nav bar----------------------------
+  addNavBar(appendTo, allHeaders, i) {
+    var sportName = allHeaders.name
+    var newList = document.createElement('li')
+    newList.textContent = sportName
+    newList.setAttribute('id', 'navBarSport' + i)
+    appendTo.appendChild(newList)
+}
+
+  makeNavBarContainer(appendTo, IDType) {
+    var newUnorderList = document.createElement('ul')
+    newUnorderList.setAttribute('id', IDType)
+    appendTo.appendChild(newUnorderList)
+    return newUnorderList
+  }
+
+  dropDownContent(sportArray) {
+    var dropDownItem = document.createElement('div')
+    for (let downOption of sportArray){
+      var temp = document.createElement('li')
+      temp.setAttribute('id', downOption.name)
+      dropDownItem.appendChild(temp)
+    }
+  }
+
+  makeNavBarDropDown(navBarID) {
+    var navBar = document.getElementById('navBarSport' + navBarID)
+    var dropDownItem = document.createElement('div')
+    dropDownItem.setAttribute('class', 'dropDownContent')
+    dropDownItem.appendChild(this.createHTMLElement('li', 'matches', 'dropDownStuff', 'Matches'))
+    dropDownItem.appendChild(this.createHTMLElement('li', 'teams', 'dropDownStuff', 'Teams'))
+    dropDownItem.appendChild(this.createHTMLElement('li', 'pools', 'dropDownStuff', 'Pools'))
+    navBar.appendChild(dropDownItem)
+  }
+
+  createHTMLElement(element, IDName, className, textContent) {
+    var temp = document.createElement(element)
+    temp.setAttribute('id', IDName)
+    temp.setAttribute('id', className)
+    temp.textContent = textContent
+    return temp
   }
 }

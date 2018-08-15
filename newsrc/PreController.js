@@ -17,6 +17,10 @@ class PreController { // eslint-disable-line no-unused-vars
       // Pool comes out as a string. Example "Women Pool A". This takes the last character (The Pool Name) and puts into object. Breaks if out of Pool matches
       var poolStrLast = this.convertPoolData(newArr)
 
+      // Add Flags to the object
+      var teamAFlag = this.findFlagURL(wholeTable, i, 'a')
+      var teamBFlag = this.findFlagURL(wholeTable, i, 'b')
+
       if (poolStrLast === 'A' || poolStrLast === 'B' || poolStrLast === 'C' || poolStrLast === 'D') {
       // Null
       } else {
@@ -24,7 +28,7 @@ class PreController { // eslint-disable-line no-unused-vars
       }
 
       // Turn to correct format to iterate in Controller.js
-      returningObject = this.convertToObject(poolStrLast, newArr, dateArr, i)
+      returningObject = this.convertToObject(poolStrLast, newArr, dateArr, teamAFlag, teamBFlag, i)
     }
     return returningObject
   }
@@ -51,7 +55,21 @@ class PreController { // eslint-disable-line no-unused-vars
     return poolStrLast
   }
 
-  convertToObject (poolStrLast, newArr, dateArr, i) {
+  findFlagURL(wholeTable, i, teamName) {
+    var teamA = wholeTable[i].cells[4].innerHTML.indexOf("resCOMMON")
+
+    if (teamName == 'a') {
+        var teamAFlag = wholeTable[i].cells[4].innerHTML.substr(teamA, 27)
+        return teamAFlag
+    } else {
+        var teamB = wholeTable[i].cells[4].innerHTML.indexOf("resCOMMON", teamA + 5)
+        var teamBFlag = wholeTable[i].cells[4].innerHTML.substr(teamB, 27)
+        return teamBFlag
+    }
+}
+
+  
+  convertToObject (poolStrLast, newArr, dateArr, teamAFlag, teamBFlag, i) {
     const APRIL = 3
     var tempObj = this.tempObj
     // Define the object parameters
@@ -67,7 +85,9 @@ class PreController { // eslint-disable-line no-unused-vars
       ScoreA: '',
       ScoreB: '',
       TeamAShortName: '',
-      TeamBShortName: ''
+      TeamBShortName: '',
+      TeamAFlagURL: '',
+      TeamBFlagURL: ''
     }
 
     // Add Pool to object
@@ -89,6 +109,10 @@ class PreController { // eslint-disable-line no-unused-vars
     // Add short name
     tempObj[i].TeamAShortName = newArr[5].substr(0, 3)
     tempObj[i].TeamBShortName = newArr[11].substr(0, 3)
+
+    // Add flag URL
+    tempObj[i].TeamAFlagURL = teamAFlag
+    tempObj[i].TeamBFlagURL = teamBFlag
 
     return tempObj
   }

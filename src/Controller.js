@@ -6,6 +6,8 @@ class Controller {
         aSport.addPoolResult(theResponse[i].TeamA, theResponse[i].TeamB, theResponse[i].ScoreA, theResponse[i].ScoreB)
         aSport.addShortName(theResponse[i].TeamA, theResponse[i].TeamAShortName)
         aSport.addShortName(theResponse[i].TeamB, theResponse[i].TeamBShortName)
+        aSport.addFlagURL(theResponse[i].TeamA, theResponse[i].TeamAFlagURL)
+        aSport.addFlagURL(theResponse[i].TeamB, theResponse[i].TeamBFlagURL)
       }
     }
   }

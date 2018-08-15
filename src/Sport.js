@@ -185,14 +185,40 @@ class Sport {
     result += View.NEWLINE()
     return result
   }
+  //----------------------------------------------SEMESTER 2 CODE HERE-------------------------------------------------
   // Displays match data as a table
   displayMatches () {
-    display.removePreviousTable('overflowDiv')
+    display.removePreviousElement('overflowDiv')
     var matchTable = display.makeTable(document.body, 'match')
     display.createWrapper(matchTable)
-    display.addTableHeaders(matchTable, 'Time', 'Pool', 'Event', 'Results')
+    display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
     for (let aMatch of this.allMyMatches) {
-      display.addTableData(matchTable, aMatch.when, aMatch.myPool, aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
+      display.addTableData(matchTable, aMatch.when, aMatch.myPool, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">'  + '\n' + '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
     }
+  }
+
+  displayPools () {
+    display.removePreviousElement('overflowDiv')
+    var matchTable = display.makeTable(document.body, 'match')
+    display.createWrapper(matchTable)
+    display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
+    for (let aMatch of this.allMyMatches) {
+      display.addTableData(matchTable, aMatch.when, aMatch.myPool, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">'  + '\n' + '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
+    }
+  }
+
+  displayTeams () {
+    display.removePreviousElement('overflowDiv')
+    var matchTable = display.makeTable(document.body, 'match')
+    display.createWrapper(matchTable)
+    display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
+    for (let aMatch of this.allMyMatches) {
+      display.addTableData(matchTable, aMatch.when, aMatch.myPool, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">'  + '\n' + '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
+    }
+  }
+
+  addFlagURL (teamName, teamFlag) {
+    let theTeam = this.findTeam(teamName)
+    theTeam.flagURL = 'https://results.gc2018.com/' + teamFlag
   }
 }

@@ -109,19 +109,17 @@ class Tournament {
     return this.allMySports.find(aSport => aSport.name == targetName)
   }
   expandSports () {
-    // Make dropdown menu
-    var dropDown = display.intializeDropDown()
-
-    // Add options to the dropdown menu
+    display.removePreviousElement('navBar')
+    var navBar = display.makeNavBarContainer(document.body, 'navBar')
     let totalSports = this.allMySports.length
     for (let i = 0; i < totalSports; i++) {
-      dropDown.appendChild(display.addToDropDownMenu(this.allMySports, i))
+    display.addNavBar(navBar, this.allMySports[i], i)
+    var dropContent = display.dropDownContent(this.allMySports)
+    display.makeNavBarDropDown(i)
     }
 
-    // Add the dropdown menu to the page
-    document.body.appendChild(dropDown)
-
-    // Load the next step
-    display.displayTable()
+    for (let i = 0; i < totalSports; i++) {
+    display.displayTable(i)
+    }
   }
 }
