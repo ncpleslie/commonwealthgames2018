@@ -1,7 +1,6 @@
 class Match {
   constructor ( when, thePool, teamA, teamB ) {
-    this.options = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }
-    this.when = when.toLocaleDateString('en-GB', this.options)
+    this.when = when.toLocaleDateString()
     this.myPool = thePool
     this.myTeamA = teamA
     this.myTeamB = teamB

@@ -185,7 +185,15 @@ class Sport {
     result += View.NEWLINE()
     return result
   }
+
+
   //----------------------------------------------SEMESTER 2 CODE HERE-------------------------------------------------
+
+  addFlagURL (teamName, teamFlag) {
+    let theTeam = this.findTeam(teamName)
+    theTeam.flagURL = 'https://results.gc2018.com/' + teamFlag
+  }
+
   // Displays match data as a table
   displayMatches () {
     display.removePreviousElement('overflowDiv')
@@ -193,32 +201,27 @@ class Sport {
     display.createWrapper(matchTable)
     display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
     for (let aMatch of this.allMyMatches) {
-      display.addTableData(matchTable, aMatch.when, aMatch.myPool, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">'  + '\n' + '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
+      var firstHalf1 = display.addTableDataTwoSpan(aMatch.when)
+      var firstHalf2 = display.addTableDataTwoSpan(aMatch.myPool)
+      var firstHalf3 = display.addTableDataTopRow(matchTable, firstHalf1, firstHalf2, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">', aMatch.myTeamA, aMatch.scoreA)
+      display.addTableDataSecondRow(firstHalf3, '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamB, aMatch.scoreB)
     }
+    display.displayPoolTable()
+    display.sortTableListener()
   }
 
   displayPools () {
     display.removePreviousElement('overflowDiv')
-    var matchTable = display.makeTable(document.body, 'match')
-    display.createWrapper(matchTable)
-    display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
-    for (let aMatch of this.allMyMatches) {
-      display.addTableData(matchTable, aMatch.when, aMatch.myPool, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">'  + '\n' + '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
-    }
+    var poolTable = display.makeTable(document.body, 'pool')
+    display.createWrapper(poolTable)
+      display.addTableHeaders(poolTable, 'Pool', 'Team', 'Draws', "Loses", "Wins", 'Total', 'For', "Against ")
+      for (let aPool of this.allMyPools) {
+        for (let aPool2 of aPool.allMyTeams){
+          display.addTableData(poolTable, aPool, '<img src=' + aPool2.flagURL + ' width="26" height="19">' + ' ' + aPool2, aPool2.matchesDrawn, aPool2.matchesLost, aPool2.matchesWon, aPool2.matchesPlayed, aPool2.scoreFor, aPool2.scoreAgainst)
+        }
+      }
+      display.sortTableListener()
   }
 
-  displayTeams () {
-    display.removePreviousElement('overflowDiv')
-    var matchTable = display.makeTable(document.body, 'match')
-    display.createWrapper(matchTable)
-    display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
-    for (let aMatch of this.allMyMatches) {
-      display.addTableData(matchTable, aMatch.when, aMatch.myPool, '<img src=' + aMatch.myTeamA.flagURL + ' width="26" height="19">'  + '\n' + '<img src=' + aMatch.myTeamB.flagURL + ' width="26" height="19">', aMatch.myTeamA + '\n' + aMatch.myTeamB, aMatch.scoreA + '\n' + aMatch.scoreB)
-    }
-  }
 
-  addFlagURL (teamName, teamFlag) {
-    let theTeam = this.findTeam(teamName)
-    theTeam.flagURL = 'https://results.gc2018.com/' + teamFlag
-  }
 }

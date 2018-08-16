@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>BCSE101 18S1 Programming Assignment 1</title>
-    <!-- include source files here... -->
-    <script src="src/Controller.js"></script>
-    <script src="newsrc/PreController.js"></script>
-    <script src="newsrc/Webscraper.js"></script>
-    <script src="src/SetExtensions.js"></script>
-    <script src="src/View.js"></script>
-    <script src="src/Team.js"></script>
-    <script src="src/Match.js"></script>
-    <script src="src/Pool.js"></script>
-    <script src="src/Sport.js"></script>
-    <script src="src/Tournament.js"></script>
-    <script src="newsrc/Display.js"></script>
-    
-    <link rel="stylesheet" href="stylesheet.css">
-</head>
-          
-<body>
-    <header>
-    </header>
-
-    <script>
-      // var the2018Games // GLOBAL FOR DEBUGGING
-    let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
-    let webscraper = new Webscraper() 
-    let display = new Display()
-
-      // Loading Icon
-      // Initialize Program by fetching data
-    window.onload = webscraper.addDataFromWebPages(), display.addLoadingIcon()
-    </script> 
-
-       <h1 id='title'></h1>
-</body> 
+    <head>
+        <meta charset="utf-8">
+        <title>BCSE101 18S1 Programming Assignment 1</title>
+        <!-- include source files here... -->
+        <script src="src/Controller.js"></script>
+        <script src="newsrc/PreController.js"></script>
+        <script src="newsrc/Webscraper.js"></script>
+        <script src="src/SetExtensions.js"></script>
+        <script src="src/View.js"></script>
+        <script src="src/Team.js"></script>
+        <script src="src/Match.js"></script>
+        <script src="src/Pool.js"></script>
+        <script src="src/Sport.js"></script>
+        <script src="src/Tournament.js"></script>
+        <script src="newsrc/Display.js"></script>
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+        <script>
+            // var the2018Games // GLOBAL FOR DEBUGGING
+            let the2018Games = new Tournament('Gold Coast 2018 Commonwealth Games')
+            let webscraper = new Webscraper() 
+            let display = new Display()
+            
+            // Loading Icon
+            // Initialize Program by fetching data
+            window.onload = webscraper.addDataFromWebPages(), display.addLoadingIcon()
+        </script> 
+        <header>
+        </header>
+        <main>
+        </main>
+    </body>
 </html>
