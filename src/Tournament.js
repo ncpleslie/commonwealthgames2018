@@ -124,10 +124,8 @@ class Tournament {
 
     // Add the dropdown menu to the page
     document.body.appendChild(dropDown)
-    document.body.appendChild(dropDown2)
-    document.body.appendChild(dropDown3)
 
     // Load the next step
-    display.displayTable()
+    display.displayTable() 
   }
 }

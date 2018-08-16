@@ -37,10 +37,11 @@ class Webscraper { // eslint-disable-line no-unused-vars
   
       return fetch('https://immense-citadel-58241.herokuapp.com/' + url) // html as text
   
-              .then((resp) => resp.text())
+              .then((resp) => 
+                resp.text())
               // If error, display error message and remove loading icon
               .catch(error =>
-                  display.requestError()
+                display.requestError()
               )
               .then(function (html) {
                   // Initialize the DOM parser
