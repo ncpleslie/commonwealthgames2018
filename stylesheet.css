@@ -1,6 +1,6 @@
 body {
     background-color: rgb(255, 255, 255);
-    padding-left: 5%;
+    padding-left: 0;
     padding-right: 0;
     padding-top: 0.5%;
     font-size: 1rem;
@@ -27,7 +27,7 @@ p {
    padding:2% 0px 2% 0%;
    height: auto;
    text-align: center;
-   width: 60%;
+  
 }
 header {
     padding:60px 0 80px 0;
@@ -43,7 +43,7 @@ header {
     font-size: 2rem;
     border: none;
     cursor: pointer;
-    width: 60%;
+    width: 100%;
 }
 
 option {
@@ -67,7 +67,7 @@ table, th, td {
 }
 table {
     border-collapse: collapse;
-    width: 60%;
+    width: 100%;
 }
 
 th, td {
@@ -126,7 +126,7 @@ th {
 
     /* Position the tooltip */
     z-index: 1;
-   
+    background-color: #FFFFFF;
 
     vertical-align: top;
     color: #212121;
