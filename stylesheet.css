@@ -78,10 +78,10 @@ th, td {
     color: #212121;
 }
 
-td:first-child + td, td:first-child + td + td + td {
+/* td:first-child + td, td:first-child + td + td + td {
     color: blue;
     text-decoration: underline; 
-}
+} */
 
 
 th {
