@@ -61,13 +61,16 @@ option {
 }
 
 /* Table with match data */
-
 table, th, td {
     position: relative;
 }
 table {
     border-collapse: collapse;
     width: 100%;
+}
+
+tr {
+    border: 0px;
 }
 
 th, td {
@@ -78,18 +81,14 @@ th, td {
     color: #212121;
 }
 
-/* td:first-child + td, td:first-child + td + td + td {
-    color: blue;
-    text-decoration: underline; 
-} */
-
-
 th {
     margin: 0;
     background-color: #4CAF50;
     color: white;
     text-align: center;
+    border-left: 1px solid #388E3C;
 }
+  
 
 /* Loading Icon */
 #loadingIcon {
@@ -118,24 +117,17 @@ th {
     }
   }
 
-  /* Hover Display Team Results */
 
+  /* Hover Display Team Results */
 .tooltip:first-of-type {
     color: blue;
 }
-#team {
-    position: absolute;
-    width: 0px;
+#team{
+    border: 1px solid black;
+    position: fixed;
     text-align: center;
-    padding: 5px 0;
-    width: 10%;
-
-    /* Position the tooltip */
-    z-index: 1;
-    background-color: #FFFFFF;
-
-    vertical-align: top;
     color: #212121;
-    top: 25%;
-    left: 70%;
+    width: 10%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.486);
 }

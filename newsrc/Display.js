@@ -79,15 +79,26 @@ class Display { // eslint-disable-line no-unused-vars
     // Displays the teams results next to them on mouseover
     displayTeamTable() {
         var teamName = document.getElementsByClassName('tooltip')
+
         // Must iterate due to .getElementsByClassName turns to array
         for (let i = 0; i < teamName.length; i++) {
-            teamName[i].onmouseover = function() {
+            teamName[i].onmouseover = function(e) {
+                // Get user mouse location
+                var x = e.clientX
+                var y = e.clientY
+                // Find relevant sport
                 var sportLocation = the2018Games.findSport(document.getElementById('intialSports').value) // eslint-disable-line no-undef
-                sportLocation = sportLocation.findTeam(this.textContent)
-                sportLocation.displayTeam()
-                // Deletes them when you mouse away
-                teamName[i].onmouseout = function() {
-                    document.getElementById('overflowDiv').nextSibling.remove()
+                // Find relevant team
+                var teamLocation = sportLocation.findTeam(this.textContent)
+                // Check if teamLocation points to a team
+                if (teamLocation !== undefined) {
+                    // Call function to display team info tables
+                    teamLocation.displayTeam(x, y)
+
+                    // Deletes them when you mouse away
+                    teamName[i].onmouseout = function() {
+                        document.getElementById('overflowDiv').nextSibling.remove()
+                    }
                 }
             }
         }
@@ -118,6 +129,7 @@ class Display { // eslint-disable-line no-unused-vars
 
     addTableData(theTable, ...allData) {
         var newTableRow = document.createElement('tr')
+        newTableRow.setAttribute('class', 'sortThis')
         var newTableData
         for (let data of allData) {
             newTableData = document.createElement('td')
@@ -139,6 +151,7 @@ class Display { // eslint-disable-line no-unused-vars
 
     addTableDataTopRow(theTable, firstHalf1, firstHalf2, ...allData) {
         var newTableRow = document.createElement('tr')
+        newTableRow.setAttribute('class', 'sortThis')
         var newTableData
         newTableRow.appendChild(firstHalf1)
         newTableRow.appendChild(firstHalf2)
@@ -154,6 +167,7 @@ class Display { // eslint-disable-line no-unused-vars
 
     addTableDataSecondRow(theTable, ...allData) {
         var newTableRow = document.createElement('tr')
+        newTableRow.setAttribute('class', 'sortThis')
         var newTableData
         for (let data of allData) {
             newTableData = document.createElement('td')
@@ -195,6 +209,42 @@ class Display { // eslint-disable-line no-unused-vars
         spanElement.setAttribute('class', 'tooltiptext')
         newTableData.appendChild(spanElement)
         return newTableData
+    }
+    // Not my code. Source is: https://jsfiddle.net/thrilleratplay/epcybL4v/ Author: thrilleratplay
+    tableResizer () {
+        var header;
+        var startOffset;
+    
+        Array.prototype.forEach.call(
+          document.querySelectorAll("table th"),
+          function (th) {
+            th.style.position = 'relative'
+
+            var divElement = document.createElement('div')
+            divElement.style.cursor = 'col-resize'
+            divElement.innerHTML = "&nbsp;"
+            divElement.style.top = 0
+            divElement.style.right = 0
+            divElement.style.bottom = 0
+            divElement.style.width = '5px'
+            divElement.style.position = 'absolute'
+            
+            divElement.addEventListener('mousedown', function (e) {
+                header = th
+                startOffset = th.offsetWidth - e.pageX
+            })
+    
+            th.appendChild(divElement)
+          })
+    
+        document.addEventListener('mousemove', function (e) {
+          if (header) {
+            header.style.width = startOffset + e.pageX + 'px'
+          }
+        })
+        document.addEventListener('mouseup', function () {
+            header = undefined
+        })
     }
 
     //-------------------------------------USED TO SORT TABLE---------------------------------------------

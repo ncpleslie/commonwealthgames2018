@@ -9,6 +9,7 @@ class Team {
       this.scoreFor = 0
       this.scoreAgainst = 0
       this.poolRank = 0
+      this.poolName = ''
   }
   incWin() {
       this.matchesWon += 1
@@ -42,12 +43,14 @@ class Team {
       return this.shortName
   }
 
-  displayTeam() {
-      //display.removePreviousElement('overflowDiv')
-      //document.getElementById('title').innerHTML += ' - ' + this.name
-      var matchTable = display.makeTable(document.body, 'team')
-      display.createWrapper(matchTable)
-      display.addTableHeaders(matchTable, 'Team', 'Draws', "Loses", "Wins", 'Total', 'For', "Against ")
-      display.addTableData(matchTable, '<img src=' + this.flagURL + ' width="104" height="76">' + ' ' + this.name, this.matchesDrawn, this.matchesLost, this.matchesWon, this.matchesPlayed, this.scoreFor, this.scoreAgainst)
+  displayTeam(x, y) {
+        // Make the table
+      var teamTable = display.makeTable(document.body, 'team')
+        // Display table at current mouse location
+        teamTable.style.top = (y - 150) + 'px'
+        teamTable.style.left = (x + 20) + 'px'
+        // Add table data
+      display.addTableHeaders(teamTable, 'Team', 'Draws', "Loses", "Wins", 'Total', 'For', "Against ")
+      display.addTableData(teamTable, '<img src=' + this.flagURL + ' width="135" height="90">' + ' ' + this.name, this.matchesDrawn, this.matchesLost, this.matchesWon, this.matchesPlayed, this.scoreFor, this.scoreAgainst)
   }
 }
