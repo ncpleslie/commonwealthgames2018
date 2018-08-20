@@ -211,6 +211,7 @@ class Sport {
         display.displayPoolTable()
         display.displayTeamTable()
         display.tableResizer()
+        display.displayImage()
     }
 
     displayPools() {

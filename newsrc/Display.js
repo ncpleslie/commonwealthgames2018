@@ -55,16 +55,33 @@ class Display { // eslint-disable-line no-unused-vars
         var sportLocation = 'Commonwealth Games 2018'
         this.removePreviousElement('title')
         var title = this.createHTMLElement('h1', 'title', 'sportTitle', '')
+        
         document.body.appendChild(title)
-
+        
+        
         document.getElementById('title').innerHTML = sportLocation
         document.getElementById('intialSports').onchange = function() {
             sportLocation = the2018Games.findSport(this.value) // eslint-disable-line no-undef
 
             document.getElementById('title').innerHTML = sportLocation
-
+            
             sportLocation.displayMatches()
+            
         }
+        this.displayImage()
+        this.turnToLink()
+    }
+    turnToLink () {
+        document.getElementById('title').setAttribute('onclick', 'location.reload()')
+    }
+
+    displayImage () {
+        let title = document.getElementById('title')
+        let img = document.createElement("img")
+        img.setAttribute('id','commonwealthImg')
+        img.setAttribute('onclick','location.reload()')
+        img.setAttribute('src','https://gc2018.thecgf.com/themes/custom/commongame/logo.svg')
+        title.appendChild(img)
     }
 
     displayPoolTable() {
