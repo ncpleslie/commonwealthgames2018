@@ -50,11 +50,27 @@ Made code easier to read and more modular
 Automated addPoolResults and addShortName. No longer hardcoded
 
 
+**Iteration v0.6**
+
+
+Added pop up info for teams
+
+Changed CSS
+
+Added Pool results demo (Click Pool table header)
+
+Trialed usage of resizable tables
+
 
 
 **Alternative CORS**
 // Alternative cos-proxys
+
 // https://immense-citadel-58241.herokuapp.com/  --This is my own
+
 // https://cors-anywhere.herokuapp.com/
+
 // https://cryptic-headland-94862.herokuapp.com/
+
 // https://stackoverflow.com/questions/47076743/cors-anywhere-herokuapp-com-not-working
+
