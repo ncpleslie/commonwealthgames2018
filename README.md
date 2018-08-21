@@ -63,6 +63,14 @@ Trialed usage of resizable tables
 
 
 
+**Iteration v0.7**
+
+
+Ideas: Split the tables up so its easier to sort by. Issues: Code could break all the matches up
+
+Create a stack for a back button? So it will display the previous table when you push back. Stack (Array)
+
+
 **Alternative CORS**
 // Alternative cos-proxys
 
