@@ -70,6 +70,8 @@ Ideas: Split the tables up so its easier to sort by. Issues: Code could break al
 
 Create a stack for a back button? So it will display the previous table when you push back. Stack (Array)
 
+Store data in BST. Add search obtion
+
 
 **Alternative CORS**
 // Alternative cos-proxys
