@@ -53,9 +53,11 @@ class Display { // eslint-disable-line no-unused-vars
     // Display Match Data
     displayTable() {
         let sportLocation = 'Commonwealth Games 2018'
-        this.removePreviousElement('title')
+        this.removePreviousElement('header')
+        let header = this.createHTMLElement('header', 'header', 'header', '')
         let title = this.createHTMLElement('h1', 'title', 'sportTitle', '')
-        document.body.appendChild(title)
+        header.appendChild(title)
+        document.body.appendChild(header)
         
         document.getElementById('title').innerHTML = sportLocation
 
@@ -86,7 +88,7 @@ class Display { // eslint-disable-line no-unused-vars
         document.getElementById('Pool').onclick = function() {
             let sportLocation = the2018Games.findSport(document.getElementById('intialSports').value) // eslint-disable-line no-undef
 
-            document.getElementById('title').innerHTML += ' - Pools'
+            document.getElementById('title').innerHTML
 
             sportLocation.displayPools()
         }

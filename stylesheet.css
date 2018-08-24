@@ -5,41 +5,39 @@ body {
     margin-right:auto;
     position: relative;
     margin: 0px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 3fr 0.5fr;
+}
+header {
+    grid-column: 2 / span 2;
 }
 h1 {
     margin: 0;
     color: #FFFFFF;
     font-size: 2rem;
-    order: -1;
-    display: flex;
-    justify-content: space-between
+    display: grid;
+    grid-template-columns: 0.1fr 3fr;
+    grid-gap: 10px;
 }
 p {
-   color: black;
-}
-#match {
-   white-space: pre;
-   font-size: 1.5rem;
+    color: black;
 }
 #title {
-   background-color: #388E3C;
-   padding:5% 50% 2% 0%;
-   height: 3em;
-   font-size: 3.5em;
-   cursor: pointer;
- /*  background-image: url('./images/banner.jpg');
-   background-repeat: no-repeat;
-   background-attachment: fixed; */
-}
-
-#commonwealthImg {
-    order: -1;
+    background-color: #388E3C;
+    padding: 5% 0 0 0 ;
+    text-align: center;
+    height: 3em;
+    font-size: 3.5em;
     cursor: pointer;
-    padding: 0 0 0 5%;
+    grid-column: 3 / span 1;
+    grid-row: 1;
 }
-
+#commonwealthImg {
+    cursor: pointer;
+    grid-column: 1 / span 1;
+    grid-row: 1;
+    padding: 0 0 0 50% ;
+}
 /* Dropdown menu */
 select {
     background-color: #4CAF50;
@@ -48,48 +46,42 @@ select {
     font-size: 2rem;
     border: none;
     cursor: pointer;
-    width: 100%;
-    position: sticky;
-
-
+    grid-column: 2 / span 2;
+    grid-row: 2;
 }
-
 option {
-    display: none;
-    position: absolute;
     background-color: #f9f9f9;
-    min-width: 300px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
     color: #000000;
 }
-
-#intialSports:hover option {
-    display: block;
-}
-
 /* Table with match data */
+#match {
+    white-space: pre;
+    font-size: 1.5rem;
+}
+#overflowDiv {
+    grid-column: 2 / span 2;
+    grid-row: 3;
+}
 table, th, td {
     position: relative;
 }
 table {
     border-collapse: collapse;
     width: 100%;
+    grid-column: 2 / span 1;
+    grid-row: 3;
 }
-
 tr {
     border: 0px;
 }
-
 th, td {
     margin: 0;
     padding: 10px 10px 10px 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
     color: #212121;
-
 }
-
 th {
     margin: 0;
     background-color: #4CAF50;
@@ -97,8 +89,6 @@ th {
     text-align: center;
     border-left: 1px solid #388E3C;
 }
-  
-
 /* Loading Icon */
 #loadingIcon {
     display: block;
@@ -116,27 +106,24 @@ th {
     border: 5px solid rgb(0, 0, 0);
     border-color: rgb(0, 0, 0) transparent #fff transparent;
     animation: loadingIcon 1.2s linear infinite;
-  }
-  @keyframes loadingIcon {
+}
+@keyframes loadingIcon {
     0% {
-      transform: rotate(0deg);
-    }
+        transform: rotate(0deg);
+   }
     100% {
-      transform: rotate(360deg);
-    }
-  }
-
-
-  /* Hover Display Team Results */
+        transform: rotate(360deg);
+   }
+}
+/* Hover Display Team Results */
 .tooltip:first-of-type {
     color: blue;
 }
 #team{
-    border: 1px solid black;
     position: fixed;
     text-align: center;
     color: #212121;
-    width: 10%;
-    background-color: rgb(255, 255, 255);
+    width: 30%;
+    background-color: rgba(226, 225, 225, 0.95);
     box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.486);
 }
