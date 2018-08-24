@@ -63,6 +63,22 @@ Trialed usage of resizable tables
 
 
 
+**Iteration v0.7**
+
+
+Ideas: Split the tables up so its easier to sort by. Issues: Code could break all the matches up
+
+Create a stack for a back button? So it will display the previous table when you push back. Stack (Array)
+
+Store data in BST. Add search obtion
+
+When constructing the object (Taken from the webpage and formatted in Precontroller), I should use object literals (Var name becomes name of the object property). 
+
+Turn all "var" to let or const
+
+Turn fetch function into async and await
+
+
 **Alternative CORS**
 // Alternative cos-proxys
 
