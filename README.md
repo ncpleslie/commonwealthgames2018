@@ -74,6 +74,8 @@ Store data in BST. Add search obtion
 
 When constructing the object (Taken from the webpage and formatted in Precontroller), I should use object literals (Var name becomes name of the object property). 
 
+Turn all "var" to let or const
+
 
 **Alternative CORS**
 // Alternative cos-proxys
