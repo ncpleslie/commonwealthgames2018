@@ -76,6 +76,8 @@ When constructing the object (Taken from the webpage and formatted in Precontrol
 
 Turn all "var" to let or const
 
+Turn fetch function into async and await
+
 
 **Alternative CORS**
 // Alternative cos-proxys
