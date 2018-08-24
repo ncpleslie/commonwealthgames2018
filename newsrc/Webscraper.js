@@ -1,71 +1,53 @@
 /*
 This function needs internet access
-This heads to the urls for each sport (See URLs below)
-Grabs the relevant data and feeds it into the system. Errors will be shown in console. This is normal and an issue with javascripts async nature
+This heads to the urls for each sport (See GlobalVariables.js)
+Grabs the relevant data and feeds it into the system.
 */
 class Webscraper { // eslint-disable-line no-unused-vars
-    constructor () {
-      this.SPORTS_URLS_AND_INFO = [
-        'Netball',
-        'Gold Coast Convention and Exhibition Centre',
-        'results.gc2018.com/en/netball/event-schedule-women.htm',
-        'Men\'s Rugby Sevens',
-        'Robina Stadium',
-        'results.gc2018.com/en/rugby-sevens/event-schedule-men.htm',
-        'Women\'s Rugby Sevens',
-        'Robina Stadium',
-        'results.gc2018.com/en/rugby-sevens/event-schedule-women.htm'
-      ]
-      this.PROXY_URL = 'https://immense-citadel-58241.herokuapp.com/'
-    }
-  
-    initializeProgram () {
-      for (let i = 0; i < this.SPORTS_URLS_AND_INFO.length; i += 3) {
-        this.fetchPages(this.SPORTS_URLS_AND_INFO[i + 2], this.SPORTS_URLS_AND_INFO[i], this.SPORTS_URLS_AND_INFO[i + 1])
+
+  initializeProgram() {
+      for (let aSport of SPORTS_URLS_AND_INFO) {
+          this.fetchPages(aSport.URL, aSport.Sport, aSport.Location)
       }
-    }
-  
-      // Fetch URL
-      // Grab relevant data from webpage. Send data to eventToObject()
-      // Then adds the data to the system
-    fetchPages (url, sport, location) {
-          // Set up variables
-      let doc
-      let wholeTable
-      let formattedObj
-      let preController = new PreController()
-  
-      return fetch(this.PROXY_URL + url) // html as text
-  
-              .then((resp) => 
-                resp.text())
-              // If error, display error message and remove loading icon
-              .catch(error =>
-                display.requestError()
-              )
-              .then(function (html) {
-                  // Initialize the DOM parser
-                const PARSER = new DOMParser()
-                  // Parse the text
-                doc = PARSER.parseFromString(html, 'text/html')
-                  // Find 'tr' elements. Add to var
-                wholeTable = doc.querySelectorAll('tr')
-              })
-              .then(function () {
-                  // Format wholeTable into readable format
-                formattedObj = preController.formatTableToObject(wholeTable)
-              })
-              .then(function () {
-                  // Add the data to the system
-                let controller = new Controller()
-                controller.iterateDataToSystem(formattedObj, sport, location)
-              })
-  
-              // Finishing functions. Add results and expand buttons
-              .then(function () {
-                the2018Games.expandSports()
-                display.removeLoadingIcon()
-              })
-    }
   }
-  
+
+  async fetchPages(url, sport, location) {
+      // Set up variables
+      let preController = new PreController()
+      let controller = new Controller()
+      try {
+          // Call Fetch to grab webpage
+          const RESPONSE = await fetch(PROXY_URL + url) // html as text
+          // Convert page to text
+          const HTML = await RESPONSE.text()
+          // Initialize the DOM parser and convert text to HTML
+          const DOC = await this.domParser(HTML)
+          // Grab relevant Table data only
+          const WHOLE_TABLE = this.grabTableData(DOC)
+          // Format WHOLE_TABLE into readable format
+          const FORMATTED_OBJECT = await preController.formatTableToObject(WHOLE_TABLE)
+          // Add the data to the system
+          await controller.iterateDataToSystem(FORMATTED_OBJECT, sport, location)
+          // Finishing functions. Add results and expand buttons
+          await the2018Games.expandSports()
+          await display.removeLoadingIcon()
+      } catch (error) {
+          // If error, display error message and remove loading icon
+          display.requestError()
+      }
+  }
+
+  domParser(html) {
+      // Initialize the DOM parser
+      const PARSER = new DOMParser()
+      // Parse the text
+      let doc = PARSER.parseFromString(html, 'text/html')
+      return doc
+  }
+
+  grabTableData(doc) {
+      // Find 'tr' elements. Add to var
+      let wholeTable = doc.querySelectorAll('tr')
+      return wholeTable
+  }
+}
