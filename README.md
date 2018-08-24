@@ -72,6 +72,8 @@ Create a stack for a back button? So it will display the previous table when you
 
 Store data in BST. Add search obtion
 
+When constructing the object (Taken from the webpage and formatted in Precontroller), I should use object literals (Var name becomes name of the object property). 
+
 
 **Alternative CORS**
 // Alternative cos-proxys
