@@ -195,17 +195,17 @@ class Sport {
         theTeam.flagURL = 'https://results.gc2018.com/' + teamFlag
     }
 
-    // Displays match data as a table
+    // Displays match data as a table ------ NEEDS UPDATING TO MAKE CLEARER. HARD TO READ
     displayMatches() {
 
         display.removePreviousElement('overflowDiv')
-        var matchTable = display.makeTable(document.body, 'match')
+        let matchTable = display.makeTable(document.body, 'match')
         display.createWrapper(matchTable)
         display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
         for (let aMatch of this.allMyMatches) {
-            var firstHalf1 = display.addTableDataTwoSpan(aMatch.when)
-            var firstHalf2 = display.addTableDataTwoSpan(aMatch.myPool)
-            var firstHalf3 = display.addTableDataTopRow(matchTable, firstHalf1, firstHalf2, '<img src=' + aMatch.myTeamA.flagURL + ' width="27" height="18">', aMatch.myTeamA, aMatch.scoreA)
+            let firstHalf1 = display.addTableDataTwoSpan(aMatch.when)
+            let firstHalf2 = display.addTableDataTwoSpan(aMatch.myPool)
+            let firstHalf3 = display.addTableDataTopRow(matchTable, firstHalf1, firstHalf2, '<img src=' + aMatch.myTeamA.flagURL + ' width="27" height="18">', aMatch.myTeamA, aMatch.scoreA)
             display.addTableDataSecondRow(firstHalf3, '<img src=' + aMatch.myTeamB.flagURL + ' width="27" height="18">', aMatch.myTeamB, aMatch.scoreB)
         }
         display.displayPoolTable()
@@ -216,7 +216,7 @@ class Sport {
 
     displayPools() {
         display.removePreviousElement('overflowDiv')
-        var poolTable = display.makeTable(document.body, 'pool')
+        let poolTable = display.makeTable(document.body, 'pool')
         display.createWrapper(poolTable)
         display.addTableHeaders(poolTable, 'Pool', null, 'Team', 'Draws', "Loses", "Wins", 'Total', 'Against', 'For')
 

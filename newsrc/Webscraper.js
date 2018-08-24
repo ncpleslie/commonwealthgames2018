@@ -5,7 +5,7 @@ Grabs the relevant data and feeds it into the system. Errors will be shown in co
 */
 class Webscraper { // eslint-disable-line no-unused-vars
     constructor () {
-      this.urlObj = [
+      this.SPORTS_URLS_AND_INFO = [
         'Netball',
         'Gold Coast Convention and Exhibition Centre',
         'results.gc2018.com/en/netball/event-schedule-women.htm',
@@ -16,11 +16,12 @@ class Webscraper { // eslint-disable-line no-unused-vars
         'Robina Stadium',
         'results.gc2018.com/en/rugby-sevens/event-schedule-women.htm'
       ]
+      this.PROXY_URL = 'https://immense-citadel-58241.herokuapp.com/'
     }
   
-    addDataFromWebPages () {
-      for (let i = 0; i < this.urlObj.length; i += 3) {
-        this.fetchPages(this.urlObj[i + 2], this.urlObj[i], this.urlObj[i + 1])
+    initializeProgram () {
+      for (let i = 0; i < this.SPORTS_URLS_AND_INFO.length; i += 3) {
+        this.fetchPages(this.SPORTS_URLS_AND_INFO[i + 2], this.SPORTS_URLS_AND_INFO[i], this.SPORTS_URLS_AND_INFO[i + 1])
       }
     }
   
@@ -29,13 +30,12 @@ class Webscraper { // eslint-disable-line no-unused-vars
       // Then adds the data to the system
     fetchPages (url, sport, location) {
           // Set up variables
-      var doc
-      var wholeTable
-      var formattedObj
-      var poolResults
+      let doc
+      let wholeTable
+      let formattedObj
       let preController = new PreController()
   
-      return fetch('https://immense-citadel-58241.herokuapp.com/' + url) // html as text
+      return fetch(this.PROXY_URL + url) // html as text
   
               .then((resp) => 
                 resp.text())
@@ -45,9 +45,9 @@ class Webscraper { // eslint-disable-line no-unused-vars
               )
               .then(function (html) {
                   // Initialize the DOM parser
-                var parser = new DOMParser()
+                const PARSER = new DOMParser()
                   // Parse the text
-                doc = parser.parseFromString(html, 'text/html')
+                doc = PARSER.parseFromString(html, 'text/html')
                   // Find 'tr' elements. Add to var
                 wholeTable = doc.querySelectorAll('tr')
               })

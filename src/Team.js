@@ -45,7 +45,7 @@ class Team {
 
   displayTeam(x, y) {
         // Make the table
-      var teamTable = display.makeTable(document.body, 'team')
+        let teamTable = display.makeTable(document.body, 'team')
         // Display table at current mouse location
         teamTable.style.top = (y - 150) + 'px'
         teamTable.style.left = (x + 20) + 'px'

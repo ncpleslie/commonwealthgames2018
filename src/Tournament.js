@@ -110,9 +110,9 @@ class Tournament {
   }
   expandSports () {
     // Make dropdown menu
-    var dropDown = display.intializeDropDown()
-    var dropDown2 = display.intializeDropDown()
-    var dropDown3 = display.intializeDropDown()
+    let dropDown = display.intializeDropDown()
+    let dropDown2 = display.intializeDropDown()
+    let dropDown3 = display.intializeDropDown()
 
     // Add options to the dropdown menu
     let totalSports = this.allMySports.length

@@ -1,69 +1,69 @@
 class PreController { // eslint-disable-line no-unused-vars
   constructor () {
-    this.tempObj = [{}]
+    this.FORMATTED_MATCH_DATA = [{}]
   }
 
-  formatTableToObject (wholeTable) {
+  formatTableToObject (wholeTableFromWebscraper) {
   // Set up vars
-    var returningObject
+    let returningObject
 
-    for (let i = 1; i < wholeTable.length; i++) {
+    for (let i = 1; i < wholeTableFromWebscraper.length; i++) {
     // Take date information. Put into array
-      var dateArr = this.convertDateData(wholeTable, i)
+      let dateArr = this.convertDateData(wholeTableFromWebscraper, i)
 
       // Take the names of Pool, TeamA, TeamB. Put into array
-      var newArr = this.convertTeamData(wholeTable, i)
-
-      // Pool comes out as a string. Example "Women Pool A". This takes the last character (The Pool Name) and puts into object. Breaks if out of Pool matches
-      var poolStrLast = this.convertPoolData(newArr)
+      let teamAndPoolArr = this.convertTeamData(wholeTableFromWebscraper, i)
 
       // Add Flags to the object
-      var teamAFlag = this.findFlagURL(wholeTable, i, 'a')
-      var teamBFlag = this.findFlagURL(wholeTable, i, 'b')
+      let teamAFlag = this.findFlagURL(wholeTableFromWebscraper, i, 'a')
+      let teamBFlag = this.findFlagURL(wholeTableFromWebscraper, i, 'b')
 
-      if (poolStrLast === 'A' || poolStrLast === 'B' || poolStrLast === 'C' || poolStrLast === 'D') {
+      // Pool comes out as a string. Example "Women Pool A". This takes the last character (The Pool Name) and puts into object. Breaks if out of Pool matches
+      let poolStrLastChar = this.convertPoolData(teamAndPoolArr)
+
+      if (poolStrLastChar === 'A' || poolStrLastChar === 'B' || poolStrLastChar === 'C' || poolStrLastChar === 'D') {
       // Null
       } else {
         break
       }
 
       // Turn to correct format to iterate in Controller.js
-      returningObject = this.convertToObject(poolStrLast, newArr, dateArr, teamAFlag, teamBFlag, i)
+      returningObject = this.convertToObject(poolStrLastChar, teamAndPoolArr, dateArr, teamAFlag, teamBFlag, i)
     }
     return returningObject
   }
 
-  convertTeamData (wholeTable, i) {
-    var newArr = []
-    var newArrBad = []
-    var eventStr = wholeTable[i].cells[4].innerText.replace(/\s+/, '')
-    newArrBad = eventStr.split('\n')
-    for (let aStr of newArrBad) {
-      newArr.push(aStr.trim())
+  convertTeamData (wholeTableFromFormatter, i) {
+    let returningArr = []
+    let tempArr = []
+    let eventStr = wholeTableFromFormatter[i].cells[4].innerText.replace(/\s+/, '')
+    tempArr = eventStr.split('\n')
+    for (let aStr of tempArr) {
+      returningArr.push(aStr.trim())
     }
-    return newArr
+    return returningArr
   }
 
-  convertDateData (wholeTable, i) {
-    var dateStr = wholeTable[i].cells[0].innerText
+  convertDateData (wholeTableFromFormatter, i) {
+    let dateStr = wholeTableFromFormatter[i].cells[0].innerText
     return dateStr.split(/\W+/gm)
   }
 
   convertPoolData (newArr) {
-    var poolStr = newArr[1]
-    var poolStrLast = poolStr.substr(poolStr.length - 1)
+    let poolStr = newArr[1]
+    let poolStrLast = poolStr.substr(poolStr.length - 1)
     return poolStrLast
   }
 
-  findFlagURL(wholeTable, i, teamName) {
-    var teamA = wholeTable[i].cells[4].innerHTML.indexOf("resCOMMON")
+  findFlagURL(wholeTableFromFormatter, i, teamName) {
+    let teamA = wholeTableFromFormatter[i].cells[4].innerHTML.indexOf("resCOMMON")
 
     if (teamName == 'a') {
-        var teamAFlag = wholeTable[i].cells[4].innerHTML.substr(teamA, 27)
+      let teamAFlag = wholeTableFromFormatter[i].cells[4].innerHTML.substr(teamA, 27)
         return teamAFlag
     } else {
-        var teamB = wholeTable[i].cells[4].innerHTML.indexOf("resCOMMON", teamA + 5)
-        var teamBFlag = wholeTable[i].cells[4].innerHTML.substr(teamB, 27)
+      let teamB = wholeTableFromFormatter[i].cells[4].innerHTML.indexOf("resCOMMON", teamA + 5)
+      let teamBFlag = wholeTableFromFormatter[i].cells[4].innerHTML.substr(teamB, 27)
         return teamBFlag
     }
 }
@@ -71,9 +71,9 @@ class PreController { // eslint-disable-line no-unused-vars
   
   convertToObject (poolStrLast, newArr, dateArr, teamAFlag, teamBFlag, i) {
     const APRIL = 3
-    var tempObj = this.tempObj
+    const FORMATTED_MATCH_DATA = this.FORMATTED_MATCH_DATA
     // Define the object parameters
-    tempObj[i] = {
+    FORMATTED_MATCH_DATA[i] = {
       Year: 2018,
       Month: APRIL,
       Day: '',
@@ -91,29 +91,29 @@ class PreController { // eslint-disable-line no-unused-vars
     }
 
     // Add Pool to object
-    tempObj[i].Pool = poolStrLast
+    FORMATTED_MATCH_DATA[i].Pool = poolStrLast
 
     // Add team A/B to object
-    tempObj[i].TeamA = newArr[5].substring(3)
-    tempObj[i].TeamB = newArr[11].substring(3)
+    FORMATTED_MATCH_DATA[i].TeamA = newArr[5].substring(3)
+    FORMATTED_MATCH_DATA[i].TeamB = newArr[11].substring(3)
 
     // Add date information to the object
-    tempObj[i].Day = parseInt(dateArr[2])
-    tempObj[i].Hour = parseInt(dateArr[4])
-    tempObj[i].Minute = parseInt(dateArr[5])
+    FORMATTED_MATCH_DATA[i].Day = parseInt(dateArr[2])
+    FORMATTED_MATCH_DATA[i].Hour = parseInt(dateArr[4])
+    FORMATTED_MATCH_DATA[i].Minute = parseInt(dateArr[5])
 
     // Add match results
-    tempObj[i].ScoreA = parseInt(newArr[7])
-    tempObj[i].ScoreB = parseInt(newArr[13])
+    FORMATTED_MATCH_DATA[i].ScoreA = parseInt(newArr[7])
+    FORMATTED_MATCH_DATA[i].ScoreB = parseInt(newArr[13])
 
     // Add short name
-    tempObj[i].TeamAShortName = newArr[5].substr(0, 3)
-    tempObj[i].TeamBShortName = newArr[11].substr(0, 3)
+    FORMATTED_MATCH_DATA[i].TeamAShortName = newArr[5].substr(0, 3)
+    FORMATTED_MATCH_DATA[i].TeamBShortName = newArr[11].substr(0, 3)
 
     // Add flag URL
-    tempObj[i].TeamAFlagURL = teamAFlag
-    tempObj[i].TeamBFlagURL = teamBFlag
+    FORMATTED_MATCH_DATA[i].TeamAFlagURL = teamAFlag
+    FORMATTED_MATCH_DATA[i].TeamBFlagURL = teamBFlag
 
-    return tempObj
+    return FORMATTED_MATCH_DATA
   }
 }
