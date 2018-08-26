@@ -9,27 +9,41 @@ class Display { // eslint-disable-line no-unused-vars
         LOADING_ICON.setAttribute('id', 'loadingIcon')
         document.body.appendChild(LOADING_ICON)
     }
-    // Destroys loading icon
-    removeLoadingIcon() {
-        if (document.getElementById('loadingIcon')) {
-            document.getElementById('loadingIcon').remove()
-        }
-    }
+
     // Displays Error
     requestError() {
         setTimeout(function() {
+            // Function gets called multiple times. Remove all elements from previous call
+            display.removePreviousElement('alert')
+            display.removePreviousElement('loadingIcon')
+
             const ERROR_STRING = 'Unable to load data. Is the CORS-anywhere proxy down?'
-            document.getElementById('title').innerHTML = ERROR_STRING
-            document.getElementById('loadingIcon').remove()
+            const ERROR  = display.createHTMLElement('div', 'alert', 'alert', ERROR_STRING)
+            document.body.appendChild(ERROR)
         }, 3000)
     }
 
+    // Removes things like the loading icon and previous tables, etc
+    removePreviousElement(elementId) {
+        if (document.getElementById(elementId)) {
+            document.getElementById(elementId).remove()
+        }
+    }
+
+    createHTMLElement(element, IDName, className, textContent) {
+        let temp = document.createElement(element)
+        temp.setAttribute('id', IDName)
+        temp.setAttribute('class', className)
+        temp.textContent = textContent
+        return temp
+    }
     // --------------------------------------------Used to display on screen----------------------------
+
     // Adds a dropdown menu
     intializeDropDown() {
-        if (document.getElementById('intialSports')) {
-            document.getElementById('intialSports').remove()
-        }
+
+        this.removePreviousElement('intialSports')
+
         const DROPDOWN_MENU = document.createElement('select')
         DROPDOWN_MENU.setAttribute('id', 'intialSports')
         const firstElement = document.createElement('option')
@@ -120,10 +134,16 @@ class Display { // eslint-disable-line no-unused-vars
             }
         }
     }
-    // --------------------------------------------Used to make a table----------------------------
+    // --------------------------------------------Used to make a table-----------------------------------------------
+
+    /* The follow code is used for:
+     - Match Table 
+     - Pool Table
+     - Team Popup Table
+    */
+
     makeTable(appendTo, idName) {
-        let newTable
-        newTable = document.createElement('table')
+        let newTable = document.createElement('table')
         newTable.setAttribute('id', idName)
         appendTo.appendChild(newTable)
         return newTable
@@ -132,9 +152,8 @@ class Display { // eslint-disable-line no-unused-vars
     addTableHeaders(theTable, ...allHeaders) {
         let counter = 0
         const NEW_TABLE_ROW = document.createElement('tr')
-        let newTableHeader
         for (let aHeader of allHeaders) {
-            newTableHeader = document.createElement('th')
+            let newTableHeader = document.createElement('th')
             newTableHeader.innerHTML = aHeader
             newTableHeader.setAttribute('id', aHeader)
             counter++
@@ -147,15 +166,15 @@ class Display { // eslint-disable-line no-unused-vars
     addTableData(theTable, ...allData) {
         const NEW_TABLE_ROW = document.createElement('tr')
         NEW_TABLE_ROW.setAttribute('class', 'sortThis')
-        let newTableData
         for (let data of allData) {
-            newTableData = document.createElement('td')
+            let  newTableData = document.createElement('td')
             newTableData.innerHTML = data
             NEW_TABLE_ROW.appendChild(newTableData)
         }
         return theTable.appendChild(NEW_TABLE_ROW)
     }
 
+    // Specific for Match Table
     addTableDataTwoSpan(...allData) {
         let newTableData
         for (let data of allData) {
@@ -166,14 +185,14 @@ class Display { // eslint-disable-line no-unused-vars
         return newTableData
     }
 
-    addTableDataTopRow(theTable, firstHalf1, firstHalf2, ...allData) {
+    // Specific for Match Table
+    addTableDataTopRow(theTable, timeDataForTable, poolDataForTable, ...allData) {
         const NEW_TABLE_ROW = document.createElement('tr')
         NEW_TABLE_ROW.setAttribute('class', 'sortThis')
-        let newTableData
-        NEW_TABLE_ROW.appendChild(firstHalf1)
-        NEW_TABLE_ROW.appendChild(firstHalf2)
+        NEW_TABLE_ROW.appendChild(timeDataForTable)
+        NEW_TABLE_ROW.appendChild(poolDataForTable)
         for (let data of allData) {
-            newTableData = document.createElement('td')
+            let newTableData = document.createElement('td')
             newTableData.innerHTML = data
             newTableData = this.displayTeamInfo(newTableData, data)
             NEW_TABLE_ROW.appendChild(newTableData)
@@ -182,12 +201,12 @@ class Display { // eslint-disable-line no-unused-vars
         return theTable
     }
 
+    // Specific for Match Table
     addTableDataSecondRow(theTable, ...allData) {
         const NEW_TABLE_ROW = document.createElement('tr')
         NEW_TABLE_ROW.setAttribute('class', 'sortThis')
-        let newTableData
         for (let data of allData) {
-            newTableData = document.createElement('td')
+            let newTableData = document.createElement('td')
             newTableData.innerHTML = data
             newTableData = this.displayTeamInfo(newTableData, data)
             NEW_TABLE_ROW.appendChild(newTableData)
@@ -195,6 +214,7 @@ class Display { // eslint-disable-line no-unused-vars
         theTable.appendChild(NEW_TABLE_ROW)
     }
 
+    // This creates a div tag. It allows an element to be scrollable if the window gets too small
     createWrapper(appendTo) {
         const WRAPPER_ELEMENT = document.createElement('div')
         WRAPPER_ELEMENT.setAttribute('style', 'overflow-x:auto;')
@@ -203,23 +223,7 @@ class Display { // eslint-disable-line no-unused-vars
         document.body.appendChild(WRAPPER_ELEMENT)
     }
 
-    removePreviousElement(elementId) {
-        if (document.getElementById(elementId)) {
-            document.getElementById(elementId).remove()
-        }
-    }
-
-    createHTMLElement(element, IDName, className, textContent) {
-        let temp = document.createElement(element)
-        temp.setAttribute('id', IDName)
-        temp.setAttribute('class', className)
-        temp.textContent = textContent
-        return temp
-    }
-
     displayTeamInfo(newTableData) {
-
-        // IN HERE IT CAN CREATE A TABLE, TABLE HEAD, TABLE ROW, TABLE DATA TO DISPLAY THE TEAM RESULTS
         newTableData.setAttribute('class', 'tooltip')
         let spanElement = document.createElement('span')
         newTableData.setAttribute('id', 'expandTeamInfo')
@@ -227,6 +231,7 @@ class Display { // eslint-disable-line no-unused-vars
         newTableData.appendChild(spanElement)
         return newTableData
     }
+
     // Not my code. Source is: https://jsfiddle.net/thrilleratplay/epcybL4v/ Author: thrilleratplay
     tableResizer () {
         let header;

@@ -197,23 +197,36 @@ class Sport {
 
     // Displays match data as a table ------ NEEDS UPDATING TO MAKE CLEARER. HARD TO READ
     displayMatches() {
-
+        // Remove previous table (If exists)
         display.removePreviousElement('overflowDiv')
+        // Create the table tag. Append it to body
         let matchTable = display.makeTable(document.body, 'match')
+        // Create the wrapper to make it scrollable if too small
         display.createWrapper(matchTable)
+        // Create the header
         display.addTableHeaders(matchTable, 'Time', 'Pool', null, 'Event', 'Results')
+        // Add relevant data to the table
         for (let aMatch of this.allMyMatches) {
-            let firstHalf1 = display.addTableDataTwoSpan(aMatch.when)
-            let firstHalf2 = display.addTableDataTwoSpan(aMatch.myPool)
-            let firstHalf3 = display.addTableDataTopRow(matchTable, firstHalf1, firstHalf2, '<img src=' + aMatch.myTeamA.flagURL + ' width="27" height="18">', aMatch.myTeamA, aMatch.scoreA)
-            display.addTableDataSecondRow(firstHalf3, '<img src=' + aMatch.myTeamB.flagURL + ' width="27" height="18">', aMatch.myTeamB, aMatch.scoreB)
+            // Add time info (2 span)
+            let timeDataForTable = display.addTableDataTwoSpan(aMatch.when)
+            // Add pool info (2 span)
+            let poolDataForTable = display.addTableDataTwoSpan(aMatch.myPool)
+            // Continue first row and add the flag, team and their result
+            let firstTeamAndScore = display.addTableDataTopRow(matchTable, timeDataForTable, poolDataForTable, '<img src=' + aMatch.myTeamA.flagURL + ' width="27" height="18">', aMatch.myTeamA, aMatch.scoreA)
+            // Add a bew row (Due to the 2 span). This has teamB Flag, teamB name and result
+            display.addTableDataSecondRow(firstTeamAndScore, '<img src=' + aMatch.myTeamB.flagURL + ' width="27" height="18">', aMatch.myTeamB, aMatch.scoreB)
         }
+        // Call eventlistener for displaying pool table
         display.displayPoolTable()
+        // Call eventlistener for displaying team only results
         display.displayTeamTable()
+        // Call eventlistener for table resizer
         display.tableResizer()
+        // Add image to the top
         display.displayImage()
     }
 
+    // Displays sport-related results. Team Name, Draws, Loses, Wins, Total Games, Points Against, Point For.
     displayPools() {
         display.removePreviousElement('overflowDiv')
         let poolTable = display.makeTable(document.body, 'pool')
@@ -223,7 +236,6 @@ class Sport {
         this.sortTeamsResultsScore()
         for (let aPool2 of this.allMyTeams) {
             display.addTableData(poolTable, aPool2.poolName, '<img src=' + aPool2.flagURL + ' width="27" height="18">', aPool2, aPool2.matchesDrawn, aPool2.matchesLost, aPool2.matchesWon, aPool2.matchesPlayed, aPool2.scoreAgainst, aPool2.scoreFor)
-
         }
         display.tableResizer()
     }

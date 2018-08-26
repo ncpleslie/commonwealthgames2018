@@ -12,25 +12,24 @@ class Webscraper { // eslint-disable-line no-unused-vars
   }
 
   async fetchPages(url, sport, location) {
-      // Set up variables
-      let preController = new PreController()
-      let controller = new Controller()
       try {
           // Call Fetch to grab webpage
-          const RESPONSE = await fetch(PROXY_URL + url) // html as text
+          const RESPONSE = await fetch(PROXY_URL + url)
           // Convert page to text
           const HTML = await RESPONSE.text()
           // Initialize the DOM parser and convert text to HTML
-          const DOC = await this.domParser(HTML)
+          const DOC = this.domParser(HTML)
           // Grab relevant Table data only
           const WHOLE_TABLE = this.grabTableData(DOC)
           // Format WHOLE_TABLE into readable format
-          const FORMATTED_OBJECT = await preController.formatTableToObject(WHOLE_TABLE)
+          let preController = new PreController()
+          const FORMATTED_OBJECT = preController.formatTableToObject(WHOLE_TABLE)
           // Add the data to the system
-          await controller.iterateDataToSystem(FORMATTED_OBJECT, sport, location)
+          let controller = new Controller()
+          controller.iterateDataToSystem(FORMATTED_OBJECT, sport, location)
           // Finishing functions. Add results and expand buttons
-          await the2018Games.expandSports()
-          await display.removeLoadingIcon()
+          display.removePreviousElement('loadingIcon')
+          the2018Games.expandSports()
       } catch (error) {
           // If error, display error message and remove loading icon
           display.requestError()

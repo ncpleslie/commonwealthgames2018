@@ -108,24 +108,25 @@ class Tournament {
   findSport (targetName) {
     return this.allMySports.find(aSport => aSport.name == targetName)
   }
+
+
+  //----------------------------------------------SEMESTER 2 CODE HERE-------------------------------------------------  
+
+  // First function called after Webscraper
   expandSports () {
     // Make dropdown menu
     let dropDown = display.intializeDropDown()
-    let dropDown2 = display.intializeDropDown()
-    let dropDown3 = display.intializeDropDown()
 
     // Add options to the dropdown menu
     let totalSports = this.allMySports.length
     for (let i = 0; i < totalSports; i++) {
       dropDown.appendChild(display.addToDropDownMenu(this.allMySports, i))
-      dropDown2.appendChild(display.addToDropDownMenu(this.allMySports, i))
-      dropDown3.appendChild(display.addToDropDownMenu(this.allMySports, i))
     }
 
     // Add the dropdown menu to the page
     document.body.appendChild(dropDown)
 
-    // Load the next step
+    // Load the next step (Loading Match related table)
     display.displayTable() 
   }
 }

@@ -127,3 +127,14 @@ th {
     background-color: rgba(226, 225, 225, 0.95);
     box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.486);
 }
+
+/* Error Message */
+.alert {
+    border: 1px solid;
+	margin: 10px 0px;
+	padding: 15px 10px 15px 50px;
+    background-color: #FFBABA; /* Red */
+    color: #D8000C;
+    margin-bottom: 15px;
+    grid-column: 2 / span 2;
+}
