@@ -55,10 +55,11 @@ option {
     color: #000000;
 }
 /* Table with match data */
-#match {
+#match, #timeAndSpan {
     white-space: pre;
     font-size: 1.5rem;
 }
+
 #overflowDiv {
     grid-column: 2 / span 2;
     grid-row: 3;
@@ -137,4 +138,11 @@ th {
     color: #D8000C;
     margin-bottom: 15px;
     grid-column: 2 / span 2;
+}
+
+/* Search Box */
+
+#search {
+    grid-column: 4 / span 1;
+    grid-row: 2;
 }

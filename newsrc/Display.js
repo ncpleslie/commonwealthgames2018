@@ -269,5 +269,43 @@ class Display { // eslint-disable-line no-unused-vars
         })
     }
 
-    //-------------------------------------USED TO SORT TABLE---------------------------------------------
+    //-------------------------------------USED TO SEARCH---------------------------------------------
+    searchSports () {
+        let search = display.createHTMLElement('input', 'search', 'search', '')
+        search.setAttribute('onkeyup', 'display.searchTable()')
+        search.setAttribute('type', 'text')
+        search.setAttribute('placeholder', 'Search for teams..')
+        document.body.appendChild(search)
+    }
+
+    searchTable() {
+        let input = document.getElementById('search');
+        let filter = input.value.toUpperCase();
+        let matchTable = document.getElementById("match");
+        let tr = matchTable.getElementsByTagName('tr');
+        // Loop through all list items, and hide those who don't match the search query
+        for (let i = 1; i < tr.length; i++) {
+            let td = tr[i].getElementsByTagName("td");
+
+            if (td.length == 5 && td[3].innerText.toUpperCase().indexOf(filter) > -1) {
+                var correct = i
+                tr[correct].style.display = ""
+            } else {
+                tr[correct].nextElementSibling.style.display = ""
+                tr[i].style.display = "none"
+            }
+
+            if (td.length == 3 && td[1].innerText.toUpperCase().indexOf(filter) > -1) {
+                var correct = i
+                tr[correct].style.display = ""
+            } else {
+                tr[correct].nextElementSibling.style.display = ""
+                tr[i].style.display = "none"
+            }
+
+            if (!filter){
+                tr[i].style.display = ""
+            }
+        }
+    }
 }
