@@ -1,5 +1,7 @@
 # commonwealthgames2018
-Software Eng Assignment 1
+Software Eng 1B Assignment 1
+
+Goal: To create a dynamic SPA (Single Page Application) using javascript. This extends the project we completed in Semester 1. 
 
 
 **Iteration v0.1**
