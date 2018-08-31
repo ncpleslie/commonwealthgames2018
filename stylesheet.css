@@ -64,6 +64,10 @@ option {
     grid-column: 2 / span 2;
     grid-row: 3;
 }
+.matchbody {
+     border-bottom: 5px solid #ddd;
+ }
+
 table, th, td {
     position: relative;
 }
