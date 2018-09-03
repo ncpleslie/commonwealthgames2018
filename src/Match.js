@@ -1,6 +1,6 @@
 class Match {
   constructor ( when, thePool, teamA, teamB ) {
-    this.when = when.toLocaleString()
+    this.when = when.toLocaleDateString()
     this.myPool = thePool
     this.myTeamA = teamA
     this.myTeamB = teamB
